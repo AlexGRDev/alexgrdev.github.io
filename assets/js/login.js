@@ -1,9 +1,8 @@
-// CALLBACK DEL LOGIN
 function handleGoogleLogin(response) {
 	console.log("Google JWT recibido:", response.credential);
 	localStorage.setItem("google_jwt", response.credential);
 
-	window.location.href = "/form/fomr.html";
+	window.location.href = "/form/form.html";  // <- AHORA SÍ BRO 😭🔥
 }
 
 // Obtener client_id desde Cloudflare Worker
