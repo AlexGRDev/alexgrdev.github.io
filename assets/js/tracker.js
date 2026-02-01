@@ -1,8 +1,7 @@
 async function getFingerprint() {
 	const canvas = document.createElement("canvas");
 	const ctx = canvas.getContext("2d");
-	ctx.textBaseline = "top";
-	ctx.font = "16px 'Arial'";
+	ctx.font = "16px Arial";
 	ctx.fillText("ITSALEXITO-FP", 2, 2);
 
 	return {
@@ -14,7 +13,6 @@ async function getFingerprint() {
 }
 
 async function sendTracker() {
-
 	const fp = await getFingerprint();
 
 	const data = {
@@ -34,7 +32,7 @@ async function sendTracker() {
 		.catch(err => console.error("Tracker ERR:", err));
 }
 
-// Ejecutar si ya hay consentimiento de cookies
+// Ejecutar solo si hay permiso
 if (localStorage.getItem("cookies-accepted") === "true") {
 	sendTracker();
 }

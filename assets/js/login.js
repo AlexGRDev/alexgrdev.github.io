@@ -1,18 +1,18 @@
-// CALLBACK DEL LOGIN
+// ==========================
+//   CALLBACK LOGIN GOOGLE
+// ==========================
 function handleGoogleLogin(response) {
 	console.log("Google JWT recibido:", response.credential);
 	localStorage.setItem("google_jwt", response.credential);
-
-	window.location.href =
-		"/auth/callback.html";
+	window.location.href = "/auth/callback.html";
 }
 
-// Obtener client_id desde Cloudflare Worker
+// ==========================
+//  Obtener client_id desde Cloudflare Worker
+// ==========================
 async function getClientIdFromWorker() {
 	try {
-		const res = await fetch(
-			"https://tfg-tracker.alexgaro2015.workers.dev/client-id"
-		);
+		const res = await fetch("https://tfg-tracker.alexgaro2015.workers.dev/client-id");
 
 		if (!res.ok) throw new Error("Error obteniendo client_id");
 
@@ -25,20 +25,23 @@ async function getClientIdFromWorker() {
 	}
 }
 
-// INICIALIZAR
+// ==========================
+//  INICIALIZAR LOGIN
+// ==========================
 window.onload = async () => {
 	const clientId = await getClientIdFromWorker();
-	if (!clientId) return;
+	if (!clientId) {
+		console.error("No se pudo obtener el client_id");
+		return;
+	}
 
 	google.accounts.id.initialize({
 		client_id: clientId,
-		callback: handleGoogleLogin,
+		callback: handleGoogleLogin
 	});
 
 	google.accounts.id.renderButton(
 		document.getElementById("google-login"),
 		{ theme: "filled_black", size: "large" }
 	);
-
-	google.accounts.id.prompt();
 };

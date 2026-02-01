@@ -11,6 +11,7 @@
 
 	<script>
 		const jwt = localStorage.getItem("google_jwt");
+
 		if (!jwt) {
 			window.location.href = "/auth/login.html";
 		} else {
@@ -18,7 +19,6 @@
 				"https://docs.google.com/forms/d/e/1FAIpQLSfKIS-u1pOVuyH7Dtr1mEf1fixatu7qbIkue4Z877PbiAwJpw/viewform";
 		}
 	</script>
-
 </body>
 
 </html>

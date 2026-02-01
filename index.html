@@ -7,8 +7,6 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="/assets/css/main.css">
 
-	<!-- Google Identity (solo en login.html, aquí no hace falta) -->
-
 	<script src="/assets/js/cookies.js" defer></script>
 	<script src="/assets/js/tracker.js" defer></script>
 </head>
@@ -18,18 +16,18 @@
 	<header class="hero">
 		<div class="hero-content">
 			<h1 class="title">TFG · Análisis y Seguridad Web</h1>
-			<p class="subtitle">Plataforma oficial para el estudio de comportamiento digital del TFG ASIX.
-			</p>
+			<p class="subtitle">Plataforma oficial para el estudio del comportamiento digital del TFG ASIX.</p>
 			<a href="/auth/login.html" class="btn-primary">Participar</a>
 		</div>
 	</header>
 
 	<!-- BANNER DE COOKIES -->
 	<div id="cookie-banner" class="cookie-banner hidden">
-		<p>Usamos cookies para mejorar la experiencia y recopilar datos del TFG.</p>
-		<button id="cookie-accept">Aceptar</button>
+		<div class="cookie-box">
+			<p>Usamos cookies y tecnologías para análisis académico del TFG. Acepta para continuar.</p>
+			<button id="cookie-accept" class="btn-primary">Aceptar</button>
+		</div>
 	</div>
 
 </body>
-
 </html>
