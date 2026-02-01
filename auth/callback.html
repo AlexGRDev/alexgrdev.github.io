@@ -3,20 +3,28 @@
 
 <head>
 	<meta charset="UTF-8">
-	<title>Procesando...</title>
+	<title>Validando sesión...</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="/assets/css/main.css">
 </head>
 
-<body style="background:#0d0f16; color:white; font-family:Inter; text-align:center; padding:5rem;">
-	<h2>Validando autenticación...</h2>
+<body>
 
-	<script src="/assets/js/tracker.js"></script>
+	<div class="hero">
+		<h1 class="title">Validando sesión…</h1>
+		<p class="subtitle">Un momento, por favor.</p>
+	</div>
 
 	<script>
-		setTimeout(() => {
-			window.location.href =
-				"https://docs.google.com/forms/d/e/1FAIpQLSfKIS-u1pOVuyH7Dtr1mEf1fixatu7qbIkue4Z877PbiAwJpw/viewform";
-		}, 1200);
+		const token = localStorage.getItem("google_jwt");
+
+		if (!token) {
+			window.location.href = "/auth/login.html";
+		} else {
+			window.location.href = "/";
+		}
 	</script>
+
 </body>
 
 </html>
