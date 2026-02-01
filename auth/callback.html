@@ -3,22 +3,24 @@
 
 <head>
 	<meta charset="UTF-8">
-	<title>Cargando…</title>
+	<title>Iniciar sesión · TFG</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<script src="https://accounts.google.com/gsi/client" async defer></script>
+	<script src="/assets/js/login.js" defer></script>
+
+	<link rel="stylesheet" href="/assets/css/main.css">
 </head>
 
 <body>
-	<h2>Procesando autenticación...</h2>
 
-	<script>
-		const jwt = localStorage.getItem("google_jwt");
+	<section class="hero">
+		<div class="hero-content">
+			<h1 class="title">Inicia sesión para continuar</h1>
+			<div id="google-login"></div>
+		</div>
+	</section>
 
-		if (!jwt) {
-			window.location.href = "/auth/login.html";
-		} else {
-			window.location.href =
-				"https://docs.google.com/forms/d/e/1FAIpQLSfKIS-u1pOVuyH7Dtr1mEf1fixatu7qbIkue4Z877PbiAwJpw/viewform";
-		}
-	</script>
 </body>
 
 </html>
