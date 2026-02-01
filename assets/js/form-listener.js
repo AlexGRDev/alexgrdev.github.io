@@ -1,12 +1,17 @@
 const iframe = document.getElementById("tf-form");
 
-setInterval(() => {
+function checkFormSubmit() {
 	try {
-		const url = iframe.contentWindow.location.href;
+		const doc = iframe.contentDocument || iframe.contentWindow.document;
+		const submitted = doc.querySelector(".freebirdFormviewerViewResponseConfirmationMessage");
 
-		if (url.includes("formResponse")) {
-			window.location.href = "/thanks.html";
+		if (submitted) {
+			console.log("Formulario enviado ✔️");
+			window.location.href = "/form/thanks.html";
 		}
+	} catch (e) {
+	}
+}
 
-	} catch (e) { }
-}, 400);
+// Chequear cada 500 ms
+setInterval(checkFormSubmit, 500);
