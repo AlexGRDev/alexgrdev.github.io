@@ -3,25 +3,19 @@
 
 <head>
 	<meta charset="UTF-8">
-	<title>Validando sesión...</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="/assets/css/main.css">
+	<title>Cargando…</title>
 </head>
 
 <body>
-
-	<div class="hero">
-		<h1 class="title">Validando sesión…</h1>
-		<p class="subtitle">Un momento, por favor.</p>
-	</div>
+	<h2>Procesando autenticación...</h2>
 
 	<script>
-		const token = localStorage.getItem("google_jwt");
-
-		if (!token) {
+		const jwt = localStorage.getItem("google_jwt");
+		if (!jwt) {
 			window.location.href = "/auth/login.html";
 		} else {
-			window.location.href = "/";
+			window.location.href =
+				"https://docs.google.com/forms/d/e/1FAIpQLSfKIS-u1pOVuyH7Dtr1mEf1fixatu7qbIkue4Z877PbiAwJpw/viewform";
 		}
 	</script>
 
