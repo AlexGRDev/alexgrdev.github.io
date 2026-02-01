@@ -6,20 +6,41 @@
 	<title>Iniciar sesión · TFG</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-	<link rel="stylesheet" href="/assets/css/main.css">
-
+	<!-- Google Identity -->
 	<script src="https://accounts.google.com/gsi/client" async defer></script>
+
+	<!-- Nuestro JS -->
 	<script src="/assets/js/login.js" defer></script>
+
+	<style>
+		body {
+			background: #0d0f16;
+			height: 100vh;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			flex-direction: column;
+			color: white;
+			font-family: Arial, sans-serif;
+			text-align: center;
+		}
+
+		h1 {
+			margin-bottom: 10px;
+		}
+
+		p {
+			margin-bottom: 30px;
+			opacity: 0.8;
+		}
+	</style>
 </head>
 
-<body class="login-body">
+<body>
 
-	<div class="login-container">
-		<h1>Inicia sesión</h1>
-		<p>Accede con tu cuenta para participar en el estudio.</p>
-
-		<div id="google-login"></div>
-	</div>
+	<h1>Inicia sesión</h1>
+	<p>Accede con tu cuenta para participar en el estudio.</p>
+	<div id="google-login"></div>
 
 </body>
 
