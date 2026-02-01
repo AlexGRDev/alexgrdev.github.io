@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+	<meta charset="UTF-8">
+	<title>TFG · Análisis y Seguridad Web</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="/assets/css/main.css">
+	<script src="https://accounts.google.com/gsi/client" async defer></script>
+</head>
+
+<body>
+
+	<!-- HERO -->
+	<header class="hero">
+		<div class="hero-content">
+			<h1 class="title">TFG · Análisis y Seguridad Web</h1>
+			<p class="subtitle">
+				Plataforma oficial del proyecto TFG ASIX sobre comportamiento digital y seguridad web.
+			</p>
+
+			<a href="/auth/login.html" class="btn-primary">Participar</a>
+		</div>
+	</header>
+
+	<div id="cookie-banner" class="cookie-banner hidden">
+		<div class="cookie-box">
+			<h3>🍪 Preferencias de privacidad</h3>
+			<p>
+				Este sitio utiliza cookies esenciales y analíticas con fines académicos para el TFG
+				ASIX.
+				Puedes aceptar, rechazar o configurar tus preferencias.
+			</p>
+
+			<div class="cookie-actions">
+				<button id="cookie-settings" class="btn-secondary">Configurar</button>
+				<button id="cookie-reject" class="btn-secondary">Rechazar</button>
+				<button id="cookie-accept" class="btn-primary">Aceptar todo</button>
+			</div>
+		</div>
+	</div>
+
+	<div id="cookie-modal" class="cookie-modal hidden">
+		<div class="cookie-modal-content">
+			<h2>⚙️ Configuración de cookies</h2>
+			<p class="modal-desc">
+				Gestiona qué datos autorizas a recopilar durante el uso de esta plataforma.
+			</p>
+
+			<div class="cookie-option">
+				<div>
+					<h4>Cookies esenciales</h4>
+					<p>Necesarias para que la web funcione correctamente.</p>
+				</div>
+				<input type="checkbox" checked disabled>
+			</div>
+
+			<div class="cookie-option">
+				<div>
+					<h4>Cookies analíticas</h4>
+					<p>Permiten recopilar datos técnicos (IP anon, navegador, hardware).</p>
+				</div>
+				<label class="switch">
+					<input type="checkbox" id="toggle-analytics">
+					<span class="slider"></span>
+				</label>
+			</div>
+
+			<div class="cookie-option">
+				<div>
+					<h4>Identificación Google</h4>
+					<p>Permite iniciar sesión mediante Google (GSI).</p>
+				</div>
+				<label class="switch">
+					<input type="checkbox" id="toggle-google" checked>
+					<span class="slider"></span>
+				</label>
+			</div>
+
+			<div class="cookie-modal-actions">
+				<button id="cookie-save" class="btn-primary">Guardar</button>
+				<button id="cookie-close" class="btn-secondary">Cerrar</button>
+			</div>
+		</div>
+	</div>
+	<script src="/assets/js/cookies.js"></script>
+	<script src="/assets/js/tracker.js"></script>
+
+</body>
+
+</html>
