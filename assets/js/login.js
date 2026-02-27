@@ -6,9 +6,11 @@
 /*   By: agarcia2 <agarcia2@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/27 09:13:44 by agarcia2          #+#    #+#             */
-/*   Updated: 2026/02/27 09:45:45 by agarcia2         ###   ########.fr       */
+/*   Updated: 2026/02/27 09:58:58 by agarcia2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+const WORKER_URL = "https://tfg-tracker.alexgaro2015-5ed.workers.dev";
 
 function handleGoogleLogin(resp)
 {
@@ -28,7 +30,7 @@ function handleGoogleLogin(resp)
 	catch (err)
 	{
 		console.error("Error en handleGoogleLogin:", err);
-		alert("⚠ Se produjo un error procesando la respuesta de Google.");
+		alert("⚠ Error procesando la respuesta de Google.");
 	}
 }
 
@@ -36,9 +38,7 @@ async function getClientIdFromWorker()
 {
 	try
 	{
-		const res = await fetch(
-			"https://tfg-tracker.alexgaro2015-5ed.workers.dev/client-id"
-		);
+		const res = await fetch(WORKER_URL);
 		if (!res.ok)
 			throw new Error(`Error obteniendo client_id (${res.status})`);
 
@@ -55,13 +55,11 @@ async function getClientIdFromWorker()
 window.onload = async () =>
 {
 	const container = document.getElementById("google-login");
-
 	if (!container)
 	{
 		console.error("❌ No existe el contenedor #google-login");
 		return;
 	}
-
 	const clientId = await getClientIdFromWorker();
 	if (!clientId)
 	{
