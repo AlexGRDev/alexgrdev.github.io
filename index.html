@@ -23,10 +23,61 @@
 		</div>
 	</header>
 
-	<!-- BANNER DE COOKIES -->
 	<div id="cookie-banner" class="cookie-banner hidden">
-		<p>Usamos cookies para mejorar la experiencia y recopilar datos (solo TFG).</p>
-		<button id="cookie-accept" class="btn-primary">Aceptar</button>
+		<div class="cookie-box">
+			<h3>🍪 Usamos cookies</h3>
+			<p>Este sitio recopila datos de navegación con fines exclusivos del TFG. No se comparten con terceros.</p>
+			<div class="cookie-actions">
+				<button id="cookie-reject"  class="btn-secondary">Rechazar</button>
+				<button id="cookie-config"  class="btn-secondary">Configurar</button>
+				<button id="cookie-accept"  class="btn-primary">Aceptar todo</button>
+			</div>
+		</div>
+	</div>
+
+	<div id="cookie-modal" class="cookie-modal hidden">
+		<div class="cookie-modal-content">
+			<h3>Configuración de cookies</h3>
+			<p class="modal-desc">Selecciona qué tipos de cookies permites.</p>
+
+			<div class="cookie-option">
+				<div>
+					<strong>Cookies esenciales</strong>
+					<p>Necesarias para el funcionamiento básico.</p>
+				</div>
+				<label class="switch">
+					<input type="checkbox" checked disabled>
+					<span class="slider"></span>
+				</label>
+			</div>
+
+			<div class="cookie-option">
+				<div>
+					<strong>Cookies analíticas</strong>
+					<p>Datos de comportamiento para el estudio TFG.</p>
+				</div>
+				<label class="switch">
+					<input type="checkbox" id="cookie-analytics" checked>
+					<span class="slider"></span>
+				</label>
+			</div>
+
+			<div class="cookie-option">
+				<div>
+					<strong>Cookies de fingerprinting</strong>
+					<p>Identificación del dispositivo para el estudio.</p>
+				</div>
+				<label class="switch">
+					<input type="checkbox" id="cookie-fingerprint" checked>
+					<span class="slider"></span>
+				</label>
+			</div>
+
+			<div class="cookie-modal-actions">
+				<button id="modal-cancel" class="btn-secondary">Cancelar</button>
+				<button id="modal-save"   class="btn-primary">Guardar preferencias</button>
+			</div>
+		</div>
 	</div>
 
 </body>

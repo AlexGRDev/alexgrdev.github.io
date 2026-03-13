@@ -6,7 +6,7 @@
 /*   By: agarcia2 <agarcia2@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/27 09:13:44 by agarcia2          #+#    #+#             */
-/*   Updated: 2026/02/27 09:58:58 by agarcia2         ###   ########.fr       */
+/*   Updated: 2026/03/13 11:20:04 by agarcia2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ function handleGoogleLogin(resp)
 			alert("Error: no se pudo iniciar sesión con Google.");
 			return;
 		}
-		console.log("Google JWT recibido:", jwt);
 		localStorage.setItem("google_jwt", jwt);
 		window.location.href = "/form/form.html";
 	}

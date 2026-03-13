@@ -3,22 +3,29 @@
 
 <head>
 	<meta charset="UTF-8">
-	<title>Iniciar sesión · TFG</title>
+	<title>Acceso · TFG</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-	<!-- Google Identity Services -->
 	<script src="https://accounts.google.com/gsi/client" async defer></script>
-
 	<link rel="stylesheet" href="/assets/css/main.css">
 	<script src="/assets/js/login.js" defer></script>
 </head>
 
-<body>
+<body class="access-body">
 
-	<h1>Inicia sesión</h1>
-	<p>Accede con tu cuenta para participar en el estudio.</p>
+	<div class="container">
+		<h1>Accede a tu cuenta</h1>
+		<p>Inicia sesión o regístrate para continuar</p>
+		<p id="auth-notice"></p>
 
-	<div id="google-login"></div>
+		<button class="btn btn-login"
+			onclick="window.location.href='https://auth.ilerna.com/login?service=https://alexgrdev.github.io/form/form.html'">
+			Iniciar sesión
+		</button>
+
+		<div class="divider">o continúa con</div>
+
+		<div id="google-login"></div>
+	</div>
 
 </body>
 

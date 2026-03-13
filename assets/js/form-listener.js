@@ -1,17 +1,21 @@
 const iframe = document.getElementById("tf-form");
-
-function checkFormSubmit() {
+ 
+let firstLoad = true;
+ 
+iframe.addEventListener("load", function () {
+	if (firstLoad) {
+		firstLoad = false;
+		return;
+	}
+	window.location.href = "/form/thanks.html";
+});
+ 
+setInterval(function () {
 	try {
-		const doc = iframe.contentDocument || iframe.contentWindow.document;
-		const submitted = doc.querySelector(".freebirdFormviewerViewResponseConfirmationMessage");
-
-		if (submitted) {
-			console.log("Formulario enviado ✔️");
+		const url = iframe.contentWindow.location.href;
+		if (url.includes("formResponse")) {
 			window.location.href = "/form/thanks.html";
 		}
 	} catch (e) {
 	}
-}
-
-// Chequear cada 500 ms
-setInterval(checkFormSubmit, 500);
+}, 500);
