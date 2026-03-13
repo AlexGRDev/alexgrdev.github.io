@@ -6,83 +6,98 @@
 /*   By: agarcia2 <agarcia2@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/27 09:15:20 by agarcia2          #+#    #+#             */
-/*   Updated: 2026/03/13 11:40:55 by agarcia2         ###   ########.fr       */
+/*   Updated: 2026/03/13 15:31:07 by agarcia2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 const COOKIES_KEY = "cookies-accepted";
-const PREFS_KEY   = "cookies-prefs";
-const banner      = document.getElementById("cookie-banner");
-const modal       = document.getElementById("cookie-modal");
-const btnAccept   = document.getElementById("cookie-accept");
-const btnReject   = document.getElementById("cookie-reject");
-const btnConfig   = document.getElementById("cookie-config");
-const btnModalSave   = document.getElementById("modal-save");
-const btnModalCancel = document.getElementById("modal-cancel");
-const chkAnalytics   = document.getElementById("cookie-analytics");
-const chkFingerprint = document.getElementById("cookie-fingerprint");
+const PREFS_KEY = "cookies-prefs";
 
-function hideBanner() { banner?.classList.add("hidden"); }
-function hideModal()  { modal?.classList.add("hidden");  }
-function showModal()  { modal?.classList.remove("hidden"); }
+function getBanner() { return document.getElementById("cookie-banner"); }
+function getModal() { return document.getElementById("cookie-modal"); }
+function hideBanner() { getBanner()?.classList.add("hidden"); }
+function hideModal() { getModal()?.classList.add("hidden"); }
+function showModal() { getModal()?.classList.remove("hidden"); }
 
-function saveAndClose(prefs)
-{
+function getPrefs() {
+	try { return JSON.parse(localStorage.getItem(PREFS_KEY) || "{}"); }
+	catch (_) { return {}; }
+}
+function savePrefs(prefs) {
 	localStorage.setItem(COOKIES_KEY, "true");
 	localStorage.setItem(PREFS_KEY, JSON.stringify(prefs));
-	hideBanner();
-	hideModal();
-
-	if (prefs.analytics || prefs.fingerprint)
-	{
+}
+function callTracker(prefs) {
+	const send = () => {
 		if (typeof sendTracker === "function")
-			sendTracker();
+			sendTracker(prefs);
 		else
-			console.warn("sendTracker() no está definido aún.");
-	}
+			console.warn("sendTracker() no disponible aún.");
+	};
+
+	if (typeof sendTracker === "function")
+		send();
+	else
+		window.addEventListener("load", send, { once: true });
 }
 
-function onAcceptAll()
-{
-	saveAndClose({ analytics: true, fingerprint: true });
-}
-
-function onReject()
-{
-	localStorage.setItem(COOKIES_KEY, "true");
-	localStorage.setItem(PREFS_KEY, JSON.stringify({ analytics: false, fingerprint: false }));
+function onAcceptAll() {
+	const prefs = { analytics: true, fingerprint: true };
+	savePrefs(prefs);
 	hideBanner();
+	callTracker(prefs);
 }
 
-function onOpenConfig()
-{
-	const saved = JSON.parse(localStorage.getItem(PREFS_KEY) || "{}");
-	if (chkAnalytics)   chkAnalytics.checked   = saved.analytics   ?? true;
-	if (chkFingerprint) chkFingerprint.checked = saved.fingerprint ?? true;
+function onReject() {
+	const prefs = { analytics: false, fingerprint: false };
+	savePrefs(prefs);
+	hideBanner();
+	callTracker(prefs);]
+}
+
+function onOpenConfig() {
+	const saved = getPrefs();
+	const chkA = document.getElementById("cookie-analytics");
+	const chkF = document.getElementById("cookie-fingerprint");
+	if (chkA) chkA.checked = saved.analytics ?? true;
+	if (chkF) chkF.checked = saved.fingerprint ?? true;
 	showModal();
 }
 
-function onSavePrefs()
-{
-	saveAndClose({
-		analytics:   chkAnalytics?.checked   ?? false,
-		fingerprint: chkFingerprint?.checked ?? false
+function onSavePrefs() {
+	const chkA = document.getElementById("cookie-analytics");
+	const chkF = document.getElementById("cookie-fingerprint");
+	const prefs = {
+		analytics: chkA?.checked ?? false,
+		fingerprint: chkF?.checked ?? false
+	};
+	savePrefs(prefs);
+	hideBanner();
+	hideModal();
+	callTracker(prefs);
+}
+
+function initCookies() {
+	const banner = getBanner();
+	if (!banner) return;
+
+	if (localStorage.getItem(COOKIES_KEY)) {
+		callTracker(getPrefs());
+		return;
+	}
+	banner.classList.remove("hidden");
+	document.getElementById("cookie-accept")?.addEventListener("click", onAcceptAll);
+	document.getElementById("cookie-reject")?.addEventListener("click", onReject);
+	document.getElementById("cookie-config")?.addEventListener("click", onOpenConfig);
+	document.getElementById("modal-save")?.addEventListener("click", onSavePrefs);
+	document.getElementById("modal-cancel")?.addEventListener("click", hideModal);
+
+	getModal()?.addEventListener("click", e => {
+		if (e.target === getModal()) hideModal();
 	});
 }
 
-
-window.addEventListener("DOMContentLoaded", () =>
-{
-	if (localStorage.getItem(COOKIES_KEY))
-		return;
-
-	banner?.classList.remove("hidden");
-	btnAccept?.addEventListener("click", onAcceptAll);
-	btnReject?.addEventListener("click", onReject);
-	btnConfig?.addEventListener("click", onOpenConfig);
-	btnModalSave?.addEventListener("click", onSavePrefs);
-	btnModalCancel?.addEventListener("click", hideModal);
-	modal?.addEventListener("click", (e) => {
-		if (e.target === modal) hideModal();
-	});
-});
+if (document.readyState === "loading")
+	document.addEventListener("DOMContentLoaded", initCookies);
+else
+	initCookies();

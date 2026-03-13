@@ -3,34 +3,322 @@
 
 <head>
 	<meta charset="UTF-8">
-	<title>TFG · Plataforma de Análisis y Gestión de Datos</title>
+	<title>TFG · Análisis de Exposición de Datos Web</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Syne:wght@400;700;800;900&display=swap"
+		rel="stylesheet">
 	<link rel="stylesheet" href="/assets/css/main.css">
+	<link rel="stylesheet" href="/assets/css/buttons.css">
+	<link rel="stylesheet" href="/assets/css/cookies.css">
+	<link rel="stylesheet" href="/assets/css/ landing.css">
 	<script src="/assets/js/cookies.js" defer></script>
 	<script src="/assets/js/tracker.js" defer></script>
 </head>
 
 <body>
-
-	<header class="hero">
-		<div class="hero-content">
-			<h1 class="title">TFG · Análisis y Seguridad Web</h1>
-			<p class="subtitle">
-				Plataforma oficial del estudio de comportamiento digital del TFG ASIX.
+	<nav class="l-nav">
+		<a href="#" class="l-nav-logo">TFG<b>·</b>ITSALEXITO</a>
+		<ul class="l-nav-links">
+			<li><a href="#datos">Datos</a></li>
+			<li><a href="#como">Cómo funciona</a></li>
+			<li><a href="#autor">Autor</a></li>
+			<li><a href="#faq">FAQ</a></li>
+		</ul>
+		<a href="/auth/login.html" class="l-nav-btn">Participar →</a>
+	</nav>
+	<section class="l-hero">
+		<div class="l-hero-inner">
+			<div class="l-pill">
+				<span class="l-pill-dot"></span>
+				TFG ASIX · 2026 · Alex García Rodríguez
+			</div>
+			<h1 class="l-title">
+				¿Cuánto saben<br>las webs<br><span class="acc">de ti?</span>
+			</h1>
+			<p class="l-sub">
+				Un estudio técnico y educativo sobre la <strong>exposición de datos personales</strong>
+				en la navegación web. Fingerprinting, metadatos, identidad digital —
+				todo lo que cedes sin saberlo.
 			</p>
-			<a href="/auth/login.html" class="btn-primary">Participar</a>
+			<div class="l-btns">
+				<a href="/auth/login.html" class="l-btn-red">Participar en el estudio</a>
+				<a href="#como" class="l-btn-ghost">Cómo funciona</a>
+			</div>
+			<div class="l-stats">
+				<div class="l-stat">
+					<div class="l-stat-n">+<span>30</span></div>
+					<div class="l-stat-l">Datos por sesión</div>
+				</div>
+				<div class="l-stat">
+					<div class="l-stat-n"><span>0</span> cookies</div>
+					<div class="l-stat-l">Para identificarte</div>
+				</div>
+				<div class="l-stat">
+					<div class="l-stat-n"><span>100</span>%</div>
+					<div class="l-stat-l">Transparente</div>
+				</div>
+				<div class="l-stat">
+					<div class="l-stat-n"><span>5</span> fases</div>
+					<div class="l-stat-l">Proyecto completo</div>
+				</div>
+			</div>
 		</div>
-	</header>
+	</section>
+
+	<div class="l-sep"></div>
+
+	<div id="datos">
+		<div class="l-wrap l-reveal l-data-wrap">
+			<div class="l-sec-eye">Privacidad digital</div>
+			<h2 class="l-sec-h">¿Qué sabe una web sobre ti?</h2>
+			<p class="l-sec-sub">Sin aceptar ninguna cookie, una web puede construir un perfil detallado de
+				tu dispositivo y comportamiento.</p>
+			<div class="l-cards">
+				<div class="l-card">
+					<div class="l-card-icon">🖥️</div>
+					<div class="l-card-title">Hardware</div>
+					<div class="l-card-desc">Núcleos CPU, RAM aproximada, puntos táctiles, GPU y
+						arquitectura del procesador.</div>
+					<div class="l-card-tag">navigator.hardwareConcurrency</div>
+				</div>
+				<div class="l-card">
+					<div class="l-card-icon">🌐</div>
+					<div class="l-card-title">Navegador</div>
+					<div class="l-card-desc">User-Agent, idiomas, plugins instalados, soporte de
+						APIs, Do Not Track.</div>
+					<div class="l-card-tag">navigator.userAgent</div>
+				</div>
+				<div class="l-card">
+					<div class="l-card-icon">🖼️</div>
+					<div class="l-card-title">Canvas Fingerprint</div>
+					<div class="l-card-desc">Cada GPU renderiza píxeles de forma distinta. Ese hash
+						te identifica sin cookies.</div>
+					<div class="l-card-tag">Canvas 2D API</div>
+				</div>
+				<div class="l-card">
+					<div class="l-card-icon">🎵</div>
+					<div class="l-card-title">Audio Fingerprint</div>
+					<div class="l-card-desc">El motor de audio genera señales únicas que crean un
+						identificador estable del sistema.</div>
+					<div class="l-card-tag">OfflineAudioContext</div>
+				</div>
+				<div class="l-card">
+					<div class="l-card-icon">📡</div>
+					<div class="l-card-title">Red</div>
+					<div class="l-card-desc">Tipo de conexión, velocidad estimada, latencia RTT y
+						estado del modo ahorro de datos.</div>
+					<div class="l-card-tag">NetworkInformation API</div>
+				</div>
+				<div class="l-card">
+					<div class="l-card-icon">🔒</div>
+					<div class="l-card-title">Permisos</div>
+					<div class="l-card-desc">Estado de cámara, micrófono, geolocalización y
+						notificaciones — sin pedirlos.</div>
+					<div class="l-card-tag">Permissions API</div>
+				</div>
+				<div class="l-card">
+					<div class="l-card-icon">🔡</div>
+					<div class="l-card-title">Fuentes instaladas</div>
+					<div class="l-card-desc">Midiendo el renderizado de texto en canvas se detectan
+						las fuentes de tu sistema.</div>
+					<div class="l-card-tag">Canvas metrics</div>
+				</div>
+				<div class="l-card">
+					<div class="l-card-icon">🖱️</div>
+					<div class="l-card-title">Comportamiento</div>
+					<div class="l-card-desc">Clicks, movimientos del ratón, scroll máximo, tiempo en
+						página y cambios de pestaña.</div>
+					<div class="l-card-tag">Event listeners</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="l-sep"></div>
+	<div id="como">
+		<div class="l-wrap l-reveal">
+			<div class="l-sec-eye">Arquitectura del estudio</div>
+			<h2 class="l-sec-h">Cómo funciona el proyecto</h2>
+			<p class="l-sec-sub">Infraestructura real de producción: frontend estático, capa serverless y
+				backend privado.</p>
+			<div class="l-how" style="margin-top:3rem">
+				<div class="l-steps">
+					<div class="l-step">
+						<div class="l-step-n">01</div>
+						<div>
+							<h3>Entras a la web</h3>
+							<p>El banner de cookies te informa de qué se recopilará. El
+								tracking solo se activa si aceptas.</p>
+						</div>
+					</div>
+					<div class="l-step">
+						<div class="l-step-n">02</div>
+						<div>
+							<h3>Login con Google</h3>
+							<p>OAuth 2.0 seguro. El <code>client_id</code> nunca está en el
+								frontend — lo inyecta el Worker de Cloudflare.</p>
+						</div>
+					</div>
+					<div class="l-step">
+						<div class="l-step-n">03</div>
+						<div>
+							<h3>Fingerprinting silencioso</h3>
+							<p>Mientras navegas, el tracker recopila más de 30 atributos de
+								tu dispositivo y red.</p>
+						</div>
+					</div>
+					<div class="l-step">
+						<div class="l-step-n">04</div>
+						<div>
+							<h3>Formulario del estudio</h3>
+							<p>Respondes un breve formulario. Los datos de comportamiento se
+								asocian a tu sesión.</p>
+						</div>
+					</div>
+					<div class="l-step">
+						<div class="l-step-n">05</div>
+						<div>
+							<h3>Ves tu perfil digital</h3>
+							<p>Se muestra exactamente qué información se ha capturado.
+								Transparencia total.</p>
+						</div>
+					</div>
+				</div>
+				<div class="l-term">
+					<div class="l-term-bar">
+						<div class="l-dot" style="background:#ff5f57"></div>
+						<div class="l-dot" style="background:#ffbd2e"></div>
+						<div class="l-dot" style="background:#28c840"></div>
+						<span class="l-term-label">tracker.js · output</span>
+					</div>
+					<div class="l-term-body">
+						<div><span class="tc">// Payload → Cloudflare Worker</span></div>
+						<div><span class="tp">const</span> <span class="tw">payload</span> <span class="tc">=</span> <span class="tw">{</span></div>
+						<div>&nbsp;&nbsp;<span class="tb">google_id</span><span class="tc">:</span> <span class="ty">"10440429..."</span><span class="tc">,</span></div>
+						<div>&nbsp;&nbsp;<span class="tb">canvas</span><span class="tc">:</span>    <span class="ty">"a3f2b1c9..."</span><span class="tc">,</span></div>
+						<div>&nbsp;&nbsp;<span class="tb">audio</span><span class="tc">:</span>     <span class="ty">124.04347</span><span class="tc">,</span></div>
+						<div>&nbsp;&nbsp;<span class="tb">gpu</span><span class="tc">:</span>       <span class="ty">"Apple M3 GPU"</span><span class="tc">,</span></div>
+						<div>&nbsp;&nbsp;<span class="tb">ram</span><span class="tc">:</span>       <span class="tg">8</span><span class="tc">,</span></div>
+						<div>&nbsp;&nbsp;<span class="tb">cores</span><span class="tc">:</span>     <span class="tg">10</span><span class="tc">,</span></div>
+						<div>&nbsp;&nbsp;<span class="tb">fonts</span><span class="tc">:</span>     <span class="tw">[</span><span class="ty">"Arial"</span><span class="tc">,</span><span class="ty">"+18"</span><span class="tw">]</span><span class="tc">,</span></div>
+						<div>&nbsp;&nbsp;<span class="tb">scroll</span><span class="tc">:</span>    <span class="tg">73</span><span class="tc">,</span></div>
+						<div>&nbsp;&nbsp;<span class="tb">timeOnPage</span><span class="tc">:</span><span class="tg">142</span></div>
+						<div><span class="tw">}</span></div>
+						<div>&nbsp;</div>
+						<div><span class="tg">✓ Log guardado en GitHub Repo</span></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="l-sep"></div>
+	<div id="autor">
+		<div class="l-wrap l-reveal">
+			<div class="l-author">
+				<div class="l-a-card">
+					<div class="l-a-avi">👨‍💻</div>
+					<div class="l-a-name">Alex García</div>
+					<div class="l-a-role">ASIX · TFG 2026</div>
+					<div class="l-a-school">42 Barcelona · Ilerna</div>
+					<div class="l-a-tags">
+						<span class="l-a-tag">Linux</span>
+						<span class="l-a-tag">Docker</span>
+						<span class="l-a-tag">Networking</span>
+						<span class="l-a-tag">Security</span>
+						<span class="l-a-tag">CI/CD</span>
+						<span class="l-a-tag">JavaScript</span>
+					</div>
+				</div>
+				<div class="l-a-body">
+					<div class="l-sec-eye" style="margin-bottom:.7rem">Sobre el proyecto</div>
+					<h3>Análisis de Exposición de Datos y Hardening en Infraestructuras Web</h3>
+					<p>El objetivo de este TFG es <strong>demostrar, de forma didáctica y
+							transparente</strong>, la cantidad de información que un usuario
+						cede durante la navegación web — incluso sin aceptar cookies
+						tradicionales.</p>
+					<p>Integra <strong>administración de sistemas, seguridad, redes y desarrollo
+							web</strong>: desde el diseño de red en Packet Tracer hasta el
+						despliegue automatizado con CI/CD en GitHub Pages y Cloudflare Workers.
+					</p>
+					<div class="l-sec-eye" style="margin-bottom:.7rem;margin-top:1.5rem">Estado del proyecto</div>
+					<div class="l-phases">
+						<div class="l-phase done">  <span class="l-phase-lbl">Fase 1 · Arquitectura del sistema</span>  <span class="l-phase-st">Completada</span></div>
+						<div class="l-phase done">  <span class="l-phase-lbl">Fase 2 · Frontend y autenticación</span>  <span class="l-phase-st">Completada</span></div>
+						<div class="l-phase done">  <span class="l-phase-lbl">Fase 3 · Tracking y fingerprinting</span> <span class="l-phase-st">Completada</span></div>
+						<div class="l-phase done">  <span class="l-phase-lbl">Fase 4 · Integración y reporte</span>     <span class="l-phase-st">Completada</span></div>
+						<div class="l-phase active"><span class="l-phase-lbl">Fase 5 · Panel y hardening</span>          <span class="l-phase-st">En curso</span></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="l-sep"></div>
+
+	<div id="faq">
+		<div class="l-wrap l-reveal">
+			<div class="l-sec-eye">Preguntas frecuentes</div>
+			<h2 class="l-sec-h">FAQ</h2>
+			<div class="l-faq" style="margin-top:2.5rem">
+				<div class="l-fq"><button class="l-fq-btn">¿Qué pasa con mis datos después del estudio?
+						<span class="l-fq-ico">+</span></button>
+					<div class="l-fq-ans">Los datos se almacenan en un repositorio privado de GitHub
+						exclusivamente para el análisis del TFG. No se comparten con terceros,
+						no se venden y serán eliminados tras la evaluación. El estudio cumple
+						con el RGPD y la LOPDGDD.</div>
+				</div>
+				<div class="l-fq"><button class="l-fq-btn">¿Es necesario iniciar sesión con Google?
+						<span class="l-fq-ico">+</span></button>
+					<div class="l-fq-ans">Sí, el login permite asociar tus respuestas con los datos
+						técnicos de tu sesión. En ningún momento se accede a tu contraseña ni a
+						más datos de Google que el nombre, email y foto de perfil.</div>
+				</div>
+				<div class="l-fq"><button class="l-fq-btn">¿Qué diferencia hay con el tracking de webs
+						reales? <span class="l-fq-ico">+</span></button>
+					<div class="l-fq-ans">Ninguna técnicamente. Google, Meta y plataformas de
+						publicidad usan exactamente las mismas APIs. La diferencia es que aquí
+						te mostramos qué se ha recopilado — algo que las webs comerciales nunca
+						hacen.</div>
+				</div>
+				<div class="l-fq"><button class="l-fq-btn">¿Puedo participar desde el móvil? <span
+							class="l-fq-ico">+</span></button>
+					<div class="l-fq-ans">Sí, de hecho es interesante participar desde distintos
+						dispositivos para comparar los perfiles generados. La web es
+						completamente responsive.</div>
+				</div>
+				<div class="l-fq"><button class="l-fq-btn">¿Qué es el fingerprinting y por qué no
+						necesita cookies? <span class="l-fq-ico">+</span></button>
+					<div class="l-fq-ans">Combina múltiples atributos de tu dispositivo para crear
+						un identificador único sin almacenar nada en tu navegador. Es
+						prácticamente imposible de bloquear con métodos tradicionales.</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="l-cta">
+		<h2>¿Listo para ver tu perfil digital?</h2>
+		<p>Participa en el estudio. Solo tarda 3 minutos y al final verás exactamente qué datos se han
+			recopilado sobre ti.</p>
+		<a href="/auth/login.html" class="l-btn-red">Comenzar ahora →</a>
+	</div>
+	<footer class="l-footer">
+		<span class="l-footer-logo">TFG<b>·</b>ITSALEXITO</span>
+		<p>Alex García Rodríguez · ASIX 2026 · Proyecto educativo · Datos confidenciales</p>
+	</footer>
 
 	<div id="cookie-banner" class="cookie-banner hidden">
 		<div class="cookie-box">
 			<h3>🍪 Usamos cookies</h3>
-			<p>Este sitio recopila datos de navegación con fines exclusivos del TFG. No se comparten con terceros.</p>
+			<p>Este sitio recopila datos de navegación con fines exclusivos del TFG. No se comparten con
+				terceros.</p>
 			<div class="cookie-actions">
-				<button id="cookie-reject"  class="btn-secondary">Rechazar</button>
-				<button id="cookie-config"  class="btn-secondary">Configurar</button>
-				<button id="cookie-accept"  class="btn-primary">Aceptar todo</button>
+				<button id="cookie-reject" class="btn-secondary">Rechazar</button>
+				<button id="cookie-config" class="btn-secondary">Configurar</button>
+				<button id="cookie-accept" class="btn-primary">Aceptar todo</button>
 			</div>
 		</div>
 	</div>
@@ -39,47 +327,43 @@
 		<div class="cookie-modal-content">
 			<h3>Configuración de cookies</h3>
 			<p class="modal-desc">Selecciona qué tipos de cookies permites.</p>
-
 			<div class="cookie-option">
-				<div>
-					<strong>Cookies esenciales</strong>
+				<div><strong>Cookies esenciales</strong>
 					<p>Necesarias para el funcionamiento básico.</p>
-				</div>
-				<label class="switch">
-					<input type="checkbox" checked disabled>
-					<span class="slider"></span>
-				</label>
+				</div><label class="switch"><input type="checkbox" checked disabled><span class="slider"></span></label>
 			</div>
-
 			<div class="cookie-option">
-				<div>
-					<strong>Cookies analíticas</strong>
+				<div><strong>Cookies analíticas</strong>
 					<p>Datos de comportamiento para el estudio TFG.</p>
-				</div>
-				<label class="switch">
-					<input type="checkbox" id="cookie-analytics" checked>
-					<span class="slider"></span>
-				</label>
+				</div><label class="switch"><input type="checkbox" id="cookie-analytics" checked><span class="slider"></span></label>
 			</div>
-
 			<div class="cookie-option">
-				<div>
-					<strong>Cookies de fingerprinting</strong>
+				<div><strong>Cookies de fingerprinting</strong>
 					<p>Identificación del dispositivo para el estudio.</p>
-				</div>
-				<label class="switch">
-					<input type="checkbox" id="cookie-fingerprint" checked>
-					<span class="slider"></span>
-				</label>
+				</div><label class="switch"><input type="checkbox" id="cookie-fingerprint" checked><span class="slider"></span></label>
 			</div>
-
 			<div class="cookie-modal-actions">
 				<button id="modal-cancel" class="btn-secondary">Cancelar</button>
-				<button id="modal-save"   class="btn-primary">Guardar preferencias</button>
+				<button id="modal-save" class="btn-primary">Guardar preferencias</button>
 			</div>
 		</div>
 	</div>
 
-</body>
+	<script>
+		document.querySelectorAll('.l-fq-btn').forEach(btn => {
+			btn.addEventListener('click', () => {
+				const item = btn.parentElement;
+				const open = item.classList.contains('open');
+				document.querySelectorAll('.l-fq').forEach(i => i.classList.remove('open'));
+				if (!open) item.classList.add('open');
+			});
+		});
 
+		const obs = new IntersectionObserver(entries => {
+			entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('on'); obs.unobserve(e.target); } });
+		}, { threshold: 0.08 });
+		document.querySelectorAll('.l-reveal').forEach(el => obs.observe(el));
+	</script>
+
+</body>
 </html>

@@ -1,0 +1,55 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*    form.css                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: agarcia2 <agarcia2@student.42barcelona.    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/03/13 11:34:50 by agarcia2          #+#    #+#             */
+/*   Updated: 2026/03/13 13:29:52 by agarcia2         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+/* Usado en: form/form.html */
+
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@700;800;900&display=swap');
+
+.form-page {
+	min-height: 100vh;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding: 4rem 2rem 3rem;
+	text-align: center;
+}
+
+.form-page h1 {
+	font-family: 'Syne', sans-serif;
+	font-size: clamp(1.6rem, 4vw, 2.4rem);
+	font-weight: 900;
+	color: var(--white);
+	margin-bottom: 0.5rem;
+	letter-spacing: -.02em;
+}
+
+.form-page .sub {
+	color: #aab0c2;
+	margin-bottom: 2rem;
+	font-size: 0.92rem;
+	max-width: 480px;
+	line-height: 1.6;
+}
+
+.form-page iframe {
+	width: 100%;
+	max-width: 780px;
+	height: 1200px;
+	border: none;
+	border-radius: 12px;
+	box-shadow: 0 0 30px rgba(255, 51, 85, 0.15);
+}
+
+@media (max-width: 768px) {
+	.form-page { padding: 3rem 1rem 2rem; }
+	.form-page iframe { height: 1400px; }
+}

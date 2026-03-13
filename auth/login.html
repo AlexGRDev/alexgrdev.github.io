@@ -3,29 +3,25 @@
 
 <head>
 	<meta charset="UTF-8">
-	<title>Acceso · TFG</title>
+	<title>Iniciar sesión · TFG</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<script src="https://accounts.google.com/gsi/client" async defer></script>
 	<link rel="stylesheet" href="/assets/css/main.css">
+	<link rel="stylesheet" href="/assets/css/buttons.css">
+	<link rel="stylesheet" href="/assets/css/auth.css">
 	<script src="/assets/js/login.js" defer></script>
 </head>
 
-<body class="access-body">
+<body>
 
-	<div class="container">
-		<h1>Accede a tu cuenta</h1>
-		<p>Inicia sesión o regístrate para continuar</p>
-		<p id="auth-notice"></p>
-
-		<button class="btn btn-login"
-			onclick="window.location.href='https://auth.ilerna.com/login?service=https://alexgrdev.github.io/form/form.html'">
-			Iniciar sesión
-		</button>
-
-		<div class="divider">o continúa con</div>
-
-		<div id="google-login"></div>
-	</div>
+	<section class="hero">
+		<div class="hero-content">
+			<h1 class="title">Inicia sesión para continuar</h1>
+			<p class="login-subtitle">Usa tu cuenta de Google para acceder al estudio</p>
+			<p id="auth-notice"></p>
+			<div id="google-login"></div>
+		</div>
+	</section>
 
 </body>
 

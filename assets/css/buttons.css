@@ -1,0 +1,133 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   buttons.css                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: agarcia2 <agarcia2@student.42barcelona.    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/03/13 11:34:50 by agarcia2          #+#    #+#             */
+/*   Updated: 2026/03/13 13:29:31 by agarcia2         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+/* Usado en: index.html (cookie banner), login.html, callback.html */
+
+.btn-primary {
+	background: #ff3355;
+	padding: 0.9rem 1.7rem;
+	border-radius: 999px;
+	color: #fff;
+	font-weight: 600;
+	display: inline-block;
+	margin-top: 1.6rem;
+	text-decoration: none;
+	transition: 0.2s;
+	cursor: pointer;
+	border: none;
+}
+
+.btn-primary:hover {
+	background: #ff4d6b;
+	transform: translateY(-2px);
+}
+
+.btn-secondary {
+	background: #1d2233;
+	border: 1px solid #333849;
+	padding: 0.7rem 1.1rem;
+	border-radius: 9px;
+	color: #fff;
+	cursor: pointer;
+	font-size: 0.9rem;
+	transition: 0.2s;
+}
+
+.btn-secondary:hover {
+	background: #272c3f;
+	transform: translateY(-2px);
+}
+
+/* callback.html — .btn .btn-login */
+
+.btn {
+	display: block;
+	width: 100%;
+	padding: 14px;
+	margin: 10px 0;
+	border-radius: 8px;
+	border: none;
+	cursor: pointer;
+	font-size: 16px;
+	font-weight: bold;
+}
+
+.btn-login {
+	background: #e50914;
+	color: white;
+	transition: 0.2s;
+}
+
+.btn-login:hover {
+	background: #ff1a28;
+	transform: translateY(-2px);
+}
+
+/* landing — .l-btn-red .l-btn-ghost .l-nav-btn */
+
+.l-btn-red {
+	background: var(--red);
+	color: #fff;
+	font-family: 'Space Mono', monospace;
+	font-size: .72rem;
+	font-weight: 700;
+	letter-spacing: .1em;
+	text-transform: uppercase;
+	text-decoration: none;
+	padding: .85rem 2rem;
+	border-radius: 2px;
+	transition: .2s;
+	border: none;
+	cursor: pointer;
+	display: inline-block;
+}
+
+.l-btn-red:hover {
+	filter: brightness(1.15);
+	transform: translateY(-2px);
+}
+
+.l-btn-ghost {
+	background: transparent;
+	border: 1px solid var(--line);
+	color: var(--soft);
+	font-family: 'Space Mono', monospace;
+	font-size: .72rem;
+	letter-spacing: .1em;
+	text-transform: uppercase;
+	text-decoration: none;
+	padding: .85rem 2rem;
+	border-radius: 2px;
+	transition: .2s;
+	display: inline-block;
+}
+
+.l-btn-ghost:hover {
+	border-color: rgba(255, 255, 255, .18);
+	color: var(--white);
+}
+
+.l-nav-btn {
+	font-family: 'Space Mono', monospace;
+	font-size: .65rem;
+	font-weight: 700;
+	letter-spacing: .12em;
+	text-transform: uppercase;
+	text-decoration: none;
+	padding: .5rem 1.3rem;
+	border-radius: 2px;
+	background: var(--red);
+	color: #fff;
+	transition: .2s;
+}
+
+.l-nav-btn:hover { filter: brightness(1.15); }

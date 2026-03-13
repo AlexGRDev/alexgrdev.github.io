@@ -1,0 +1,127 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   auth.css                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: agarcia2 <agarcia2@student.42barcelona.    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/03/13 11:34:50 by agarcia2          #+#    #+#             */
+/*   Updated: 2026/03/13 13:29:45 by agarcia2         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+/* Usado en: auth/login.html, auth/callback.html */
+
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@700;800;900&display=swap');
+
+/* ── LOGIN (login.html) — hero centrado ── */
+
+.hero {
+	min-height: 100vh;
+	background: linear-gradient(135deg, #0e111a, #090c12, #161b2c);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 2rem;
+	text-align: center;
+}
+
+.hero-content {
+	max-width: 480px;
+	width: 100%;
+	animation: authFadeIn 0.8s ease both;
+}
+
+.title {
+	font-family: 'Syne', sans-serif;
+	font-size: clamp(1.8rem, 5vw, 2.6rem);
+	font-weight: 900;
+	color: var(--white);
+	line-height: 1.1;
+	letter-spacing: -.02em;
+}
+
+.login-subtitle {
+	color: #aab0c2;
+	font-size: 0.95rem;
+	margin-top: 0.6rem;
+	line-height: 1.6;
+}
+
+#auth-notice {
+	display: none;
+	margin: 1.2rem auto 0;
+	max-width: 360px;
+	background: rgba(255, 51, 85, 0.08);
+	border: 1px solid rgba(255, 51, 85, 0.25);
+	border-radius: 10px;
+	padding: 10px 16px;
+	font-size: 13px;
+	color: #ff6680;
+	line-height: 1.5;
+}
+
+#google-login {
+	display: flex;
+	justify-content: center;
+	margin-top: 2rem;
+}
+
+#google-login > div { margin-top: 0 !important; }
+
+/* ── CALLBACK (callback.html) — tarjeta centrada ── */
+
+.access-body {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	min-height: 100vh;
+}
+
+.container {
+	background: #111;
+	padding: 40px;
+	border-radius: 12px;
+	max-width: 420px;
+	width: 90%;
+	text-align: center;
+	box-shadow: 0 0 20px rgba(255, 34, 68, 0.2);
+}
+
+.container h1 {
+	font-family: 'Syne', sans-serif;
+	font-size: 1.6rem;
+	font-weight: 900;
+	color: var(--white);
+	margin-bottom: 10px;
+}
+
+.container > p {
+	color: #ccc;
+	margin-bottom: 20px;
+	font-size: 0.9rem;
+}
+
+.divider {
+	display: flex;
+	align-items: center;
+	gap: 12px;
+	margin: 20px 0 16px;
+	color: #444;
+	font-size: 13px;
+}
+
+.divider::before,
+.divider::after {
+	content: '';
+	flex: 1;
+	height: 1px;
+	background: #333;
+}
+
+/* ── ANIMACIÓN ── */
+
+@keyframes authFadeIn {
+	from { opacity: 0; transform: translateY(16px); }
+	to   { opacity: 1; transform: translateY(0); }
+}
