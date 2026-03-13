@@ -6,7 +6,7 @@
 /*   By: agarcia2 <agarcia2@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/27 09:15:20 by agarcia2          #+#    #+#             */
-/*   Updated: 2026/03/13 15:31:07 by agarcia2         ###   ########.fr       */
+/*   Updated: 2026/03/13 16:23:13 by agarcia2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ function onReject() {
 	const prefs = { analytics: false, fingerprint: false };
 	savePrefs(prefs);
 	hideBanner();
-	callTracker(prefs);]
+	callTracker(prefs);
 }
 
 function onOpenConfig() {
