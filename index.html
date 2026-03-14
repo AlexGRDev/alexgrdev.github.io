@@ -310,18 +310,296 @@
 		<p>Alex García Rodríguez · ASIX 2026 · Proyecto educativo · Datos confidenciales</p>
 	</footer>
 
-	<div id="cookie-banner" class="cookie-banner hidden">
-		<div class="cookie-box">
-			<h3>🍪 Usamos cookies</h3>
-			<p>Este sitio recopila datos de navegación con fines exclusivos del TFG. No se comparten con
-				terceros.</p>
-			<div class="cookie-actions">
-				<button id="cookie-reject" class="btn-secondary">Rechazar</button>
-				<button id="cookie-config" class="btn-secondary">Configurar</button>
-				<button id="cookie-accept" class="btn-primary">Aceptar todo</button>
-			</div>
-		</div>
-	</div>
+	<!-- ── BANNER COOKIES RGPD — reemplaza el div#cookie-banner y div#cookie-modal ── -->
+
+<!-- ── BANNER COOKIES RGPD — reemplaza el div#cookie-banner y div#cookie-modal ── -->
+
+<div id="cookie-banner" class="cookie-banner hidden">
+  <div class="cookie-box">
+    <div class="cookie-box-header">
+      <div class="cookie-box-icon">🔒</div>
+      <div>
+        <div class="cookie-box-title">Privacidad y tratamiento de datos</div>
+        <p class="cookie-box-text">
+          Este sitio utiliza tecnologías de seguimiento con fines <strong>exclusivamente académicos</strong>
+          (TFG ASIX 2026 · Ilerna / 42 Barcelona). El <strong>responsable</strong> es
+          Alex García Rodríguez
+          (<a href="mailto:agarcia2@student.42barcelona.com">agarcia2@student.42barcelona.com</a>).
+          Los datos — fingerprint, IP, comportamiento — se guardan en repositorio privado,
+          no se ceden a terceros y se eliminan tras la evaluación.
+          Base legal: <strong>consentimiento</strong> (Art. 6.1.a RGPD).
+        </p>
+      </div>
+    </div>
+    <div class="cookie-actions">
+      <button class="cookie-more" id="cookie-config">Ver política completa</button>
+      <button id="cookie-reject" class="btn-secondary">Rechazar todo</button>
+      <button id="cookie-accept" class="btn-primary">Aceptar y participar</button>
+    </div>
+  </div>
+</div>
+
+<div id="cookie-modal" class="cookie-modal hidden">
+  <div class="cookie-modal-content">
+
+    <div class="cookie-modal-header">
+      <h3>Política de privacidad y cookies</h3>
+      <p>Información sobre el tratamiento de datos según el RGPD (UE) 2016/679 y la LOPDGDD.</p>
+    </div>
+
+    <div class="cookie-modal-body">
+
+      <div class="cookie-rgpd-info" style="margin-top:.9rem">
+        <b>Responsable:</b> Alex García Rodríguez ·
+        <a href="mailto:agarcia2@student.42barcelona.com">agarcia2@student.42barcelona.com</a><br>
+        <b>Finalidad:</b> Estudio académico sobre exposición de datos en la navegación web (TFG ASIX 2026).<br>
+        <b>Base legal:</b> Consentimiento explícito del interesado (Art. 6.1.a RGPD).<br>
+        <b>Destinatarios:</b> No se ceden datos a terceros. Almacenamiento en repositorio privado (GitHub).<br>
+        <b>Derechos:</b> Acceso, rectificación, supresión, oposición y portabilidad —
+        contacta con el responsable.<br>
+        <b>Conservación:</b> Los datos se eliminan tras la evaluación del proyecto.
+      </div>
+
+      <div class="cookie-category">
+        <div class="cookie-category-header">
+          <div class="cookie-category-icon">🛡️</div>
+          <div class="cookie-category-info">
+            <div class="cookie-category-name">Cookies esenciales</div>
+            <div class="cookie-category-desc">Guardan tus preferencias de consentimiento. Siempre activas.</div>
+          </div>
+          <label class="switch"><input type="checkbox" checked disabled><span class="slider"></span></label>
+        </div>
+        <div class="cookie-detail">
+          <div class="cookie-item">
+            <span class="cookie-item-name">cookies-accepted</span>
+            <span class="cookie-item-purpose">Registra si has aceptado las cookies</span>
+            <span class="cookie-item-duration">1 año</span>
+          </div>
+          <div class="cookie-item">
+            <span class="cookie-item-name">cookies-prefs</span>
+            <span class="cookie-item-purpose">Guarda tus preferencias de consentimiento</span>
+            <span class="cookie-item-duration">1 año</span>
+          </div>
+          <div class="cookie-item">
+            <span class="cookie-item-name">google_jwt</span>
+            <span class="cookie-item-purpose">Token de sesión OAuth 2.0 de Google</span>
+            <span class="cookie-item-duration">Sesión</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="cookie-category">
+        <div class="cookie-category-header">
+          <div class="cookie-category-icon">📊</div>
+          <div class="cookie-category-info">
+            <div class="cookie-category-name">Cookies analíticas del estudio</div>
+            <div class="cookie-category-desc">
+              Métricas de comportamiento: tiempo en página, scroll, clicks.
+              Uso exclusivamente académico.
+            </div>
+          </div>
+          <label class="switch"><input type="checkbox" id="cookie-analytics" checked><span class="slider"></span></label>
+        </div>
+        <div class="cookie-detail">
+          <div class="cookie-item">
+            <span class="cookie-item-name">timeOnPage</span>
+            <span class="cookie-item-purpose">Tiempo total en la página</span>
+            <span class="cookie-item-duration">Sesión</span>
+          </div>
+          <div class="cookie-item">
+            <span class="cookie-item-name">scrollDepth</span>
+            <span class="cookie-item-purpose">Porcentaje máximo de scroll</span>
+            <span class="cookie-item-duration">Sesión</span>
+          </div>
+          <div class="cookie-item">
+            <span class="cookie-item-name">clicks / keystrokes</span>
+            <span class="cookie-item-purpose">Contador de interacciones con la página</span>
+            <span class="cookie-item-duration">Sesión</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="cookie-category">
+        <div class="cookie-category-header">
+          <div class="cookie-category-icon">🔎</div>
+          <div class="cookie-category-info">
+            <div class="cookie-category-name">Fingerprinting del dispositivo</div>
+            <div class="cookie-category-desc">
+              Identificación técnica mediante canvas hash, audio fingerprint, GPU,
+              fuentes e IP pública. <strong style="color:var(--yellow)">Dato sensible</strong>
+              — base del estudio TFG.
+            </div>
+          </div>
+          <label class="switch"><input type="checkbox" id="cookie-fingerprint" checked><span class="slider"></span></label>
+        </div>
+        <div class="cookie-detail">
+          <div class="cookie-item">
+            <span class="cookie-item-name">canvas_hash</span>
+            <span class="cookie-item-purpose">Hash único generado por la GPU</span>
+            <span class="cookie-item-duration">Puntual</span>
+          </div>
+          <div class="cookie-item">
+            <span class="cookie-item-name">audio_fp</span>
+            <span class="cookie-item-purpose">Firma del motor de audio del sistema</span>
+            <span class="cookie-item-duration">Puntual</span>
+          </div>
+          <div class="cookie-item">
+            <span class="cookie-item-name">ip_public</span>
+            <span class="cookie-item-purpose">IP pública obtenida por el servidor</span>
+            <span class="cookie-item-duration">Puntual</span>
+          </div>
+          <div class="cookie-item">
+            <span class="cookie-item-name">fonts / gpu / ram</span>
+            <span class="cookie-item-purpose">Características técnicas del hardware</span>
+            <span class="cookie-item-duration">Puntual</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="cookie-modal-footer">
+      <div class="cookie-footer-links">
+        <a href="mailto:agarcia2@student.42barcelona.com">Ejercer derechos RGPD</a>
+        <a href="https://www.aepd.es" target="_blank" rel="noopener">AEPD</a>
+      </div>
+      <button id="modal-cancel" class="btn-secondary">Cancelar</button>
+      <button id="modal-save" class="btn-primary">Guardar preferencias</button>
+    </div>
+
+  </div>
+</div>
+
+<div id="cookie-modal" class="cookie-modal hidden">
+  <div class="cookie-modal-content">
+
+    <div class="cookie-modal-header">
+      <h3>Política de privacidad y cookies</h3>
+      <p>Información sobre el tratamiento de datos según el RGPD (UE) 2016/679 y la LOPDGDD.</p>
+    </div>
+
+    <div class="cookie-modal-body">
+
+      <div class="cookie-rgpd-info" style="margin-top:.9rem">
+        <b>Responsable:</b> Alex García Rodríguez ·
+        <a href="mailto:agarcia2@student.42barcelona.com">agarcia2@student.42barcelona.com</a><br>
+        <b>Finalidad:</b> Estudio académico sobre exposición de datos en la navegación web (TFG ASIX 2026).<br>
+        <b>Base legal:</b> Consentimiento explícito del interesado (Art. 6.1.a RGPD).<br>
+        <b>Destinatarios:</b> No se ceden datos a terceros. Almacenamiento en repositorio privado (GitHub).<br>
+        <b>Derechos:</b> Acceso, rectificación, supresión, oposición y portabilidad —
+        contacta con el responsable.<br>
+        <b>Conservación:</b> Los datos se eliminan tras la evaluación del proyecto.
+      </div>
+
+      <div class="cookie-category">
+        <div class="cookie-category-header">
+          <div class="cookie-category-icon">🛡️</div>
+          <div class="cookie-category-info">
+            <div class="cookie-category-name">Cookies esenciales</div>
+            <div class="cookie-category-desc">Guardan tus preferencias de consentimiento. Siempre activas.</div>
+          </div>
+          <label class="switch"><input type="checkbox" checked disabled><span class="slider"></span></label>
+        </div>
+        <div class="cookie-detail">
+          <div class="cookie-item">
+            <span class="cookie-item-name">cookies-accepted</span>
+            <span class="cookie-item-purpose">Registra si has aceptado las cookies</span>
+            <span class="cookie-item-duration">1 año</span>
+          </div>
+          <div class="cookie-item">
+            <span class="cookie-item-name">cookies-prefs</span>
+            <span class="cookie-item-purpose">Guarda tus preferencias de consentimiento</span>
+            <span class="cookie-item-duration">1 año</span>
+          </div>
+          <div class="cookie-item">
+            <span class="cookie-item-name">google_jwt</span>
+            <span class="cookie-item-purpose">Token de sesión OAuth 2.0 de Google</span>
+            <span class="cookie-item-duration">Sesión</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="cookie-category">
+        <div class="cookie-category-header">
+          <div class="cookie-category-icon">📊</div>
+          <div class="cookie-category-info">
+            <div class="cookie-category-name">Cookies analíticas del estudio</div>
+            <div class="cookie-category-desc">
+              Métricas de comportamiento: tiempo en página, scroll, clicks.
+              Uso exclusivamente académico.
+            </div>
+          </div>
+          <label class="switch"><input type="checkbox" id="cookie-analytics" checked><span class="slider"></span></label>
+        </div>
+        <div class="cookie-detail">
+          <div class="cookie-item">
+            <span class="cookie-item-name">timeOnPage</span>
+            <span class="cookie-item-purpose">Tiempo total en la página</span>
+            <span class="cookie-item-duration">Sesión</span>
+          </div>
+          <div class="cookie-item">
+            <span class="cookie-item-name">scrollDepth</span>
+            <span class="cookie-item-purpose">Porcentaje máximo de scroll</span>
+            <span class="cookie-item-duration">Sesión</span>
+          </div>
+          <div class="cookie-item">
+            <span class="cookie-item-name">clicks / keystrokes</span>
+            <span class="cookie-item-purpose">Contador de interacciones con la página</span>
+            <span class="cookie-item-duration">Sesión</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="cookie-category">
+        <div class="cookie-category-header">
+          <div class="cookie-category-icon">🔎</div>
+          <div class="cookie-category-info">
+            <div class="cookie-category-name">Fingerprinting del dispositivo</div>
+            <div class="cookie-category-desc">
+              Identificación técnica mediante canvas hash, audio fingerprint, GPU,
+              fuentes e IP pública. <strong style="color:var(--yellow)">Dato sensible</strong>
+              — base del estudio TFG.
+            </div>
+          </div>
+          <label class="switch"><input type="checkbox" id="cookie-fingerprint" checked><span class="slider"></span></label>
+        </div>
+        <div class="cookie-detail">
+          <div class="cookie-item">
+            <span class="cookie-item-name">canvas_hash</span>
+            <span class="cookie-item-purpose">Hash único generado por la GPU</span>
+            <span class="cookie-item-duration">Puntual</span>
+          </div>
+          <div class="cookie-item">
+            <span class="cookie-item-name">audio_fp</span>
+            <span class="cookie-item-purpose">Firma del motor de audio del sistema</span>
+            <span class="cookie-item-duration">Puntual</span>
+          </div>
+          <div class="cookie-item">
+            <span class="cookie-item-name">ip_public</span>
+            <span class="cookie-item-purpose">IP pública obtenida por el servidor</span>
+            <span class="cookie-item-duration">Puntual</span>
+          </div>
+          <div class="cookie-item">
+            <span class="cookie-item-name">fonts / gpu / ram</span>
+            <span class="cookie-item-purpose">Características técnicas del hardware</span>
+            <span class="cookie-item-duration">Puntual</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="cookie-modal-footer">
+      <div class="cookie-footer-links">
+        <a href="mailto:agarcia2@student.42barcelona.com">Ejercer derechos RGPD</a>
+        <a href="https://www.aepd.es" target="_blank" rel="noopener">AEPD</a>
+      </div>
+      <button id="modal-cancel" class="btn-secondary">Cancelar</button>
+      <button id="modal-save" class="btn-primary">Guardar preferencias</button>
+    </div>
+
+  </div>
+</div>
 
 	<div id="cookie-modal" class="cookie-modal hidden">
 		<div class="cookie-modal-content">
