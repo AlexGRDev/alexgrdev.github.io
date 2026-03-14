@@ -12,7 +12,7 @@
 	<link rel="stylesheet" href="/assets/css/main.css">
 	<link rel="stylesheet" href="/assets/css/buttons.css">
 	<link rel="stylesheet" href="/assets/css/cookies.css">
-	<link rel="stylesheet" href="/assets/css/ landing.css">
+	<link rel="stylesheet" href="/assets/css/landing.css">
 	<script src="/assets/js/cookies.js" defer></script>
 	<script src="/assets/js/tracker.js" defer></script>
 </head>
@@ -341,190 +341,263 @@
 		<p>Alex García Rodríguez · ASIX 2026 · Proyecto educativo · Datos confidenciales</p>
 	</footer>
 
-	<!-- ── BANNER COOKIES RGPD ─────────────────────────────────────────────── -->
+	<!-- ── BANNER COOKIES (estilo datax.es / RGPD) ─────────────────────────── -->
 	<div id="cookie-banner" class="cookie-banner hidden">
 		<div class="cookie-box">
-			<div class="cookie-box-header">
-				<div class="cookie-box-icon">🔒</div>
-				<div>
-					<div class="cookie-box-title">Privacidad y tratamiento de datos</div>
-					<p class="cookie-box-text">
-						Este sitio utiliza tecnologías de seguimiento con fines
-						<strong>exclusivamente académicos</strong>
-						(TFG ASIX 2026 · Ilerna / 42 Barcelona). El <strong>responsable</strong>
-						es Alex García Rodríguez
-						(<a
-							href="mailto:agarcia2@student.42barcelona.com">agarcia2@student.42barcelona.com</a>).
-						Los datos — fingerprint, IP, comportamiento — se guardan en repositorio
-						privado,
-						no se ceden a terceros y se eliminan tras la evaluación.
-						Base legal: <strong>consentimiento</strong> (Art. 6.1.a RGPD).
-					</p>
-				</div>
-			</div>
+			<h3>¡Usamos cookies!</h3>
+			<p class="cookie-box-text">
+				Este sitio web utiliza cookies esenciales para garantizar su correcto
+				funcionamiento y cookies de seguimiento para entender cómo interactúas
+				con él. Este último se establecerá sólo después de tu consentimiento.
+				<a href="#" id="cookie-config">Administrar preferencias</a>
+			</p>
 			<div class="cookie-actions">
-				<button class="cookie-more" id="cookie-config">Ver política completa</button>
+				<button id="cookie-accept" class="btn-primary">Aceptar todo</button>
 				<button id="cookie-reject" class="btn-secondary">Rechazar todo</button>
-				<button id="cookie-accept" class="btn-primary">Aceptar y participar</button>
 			</div>
 		</div>
 	</div>
 
-	<!-- ── MODAL POLÍTICA COOKIES RGPD ───────────────────────────────────────── -->
+	<!-- ── MODAL PREFERENCIAS (estilo datax.es / RGPD) ──────────────────────── -->
 	<div id="cookie-modal" class="cookie-modal hidden">
 		<div class="cookie-modal-content">
 
-			<div class="cookie-modal-header">
-				<h3>Política de privacidad y cookies</h3>
-				<p>Información sobre el tratamiento de datos según el RGPD (UE) 2016/679 y la LOPDGDD.
-				</p>
+			<div class="cookie-modal-head">
+				<h3>Preferencias de cookies</h3>
+				<button id="modal-cancel" class="cookie-modal-close">✕</button>
+			</div>
+
+			<div class="cookie-modal-intro">
+				Utilizamos cookies para garantizar las funcionalidades básicas del sitio web y mejorar
+				tu experiencia en línea. Puedes elegir para cada categoría si activar/desactivar
+				siempre que quieras. Para obtener más detalles relacionados con las cookies y otros
+				datos confidenciales, lee la
+				<a
+					href="/cdn-cgi/l/email-protection#6706000615040e0655271413120302091349535505061504020b0809064904080a">política
+					de cookies</a>.
+				<br><br>
+				<small style="color:#4b5563">
+					<strong>Responsable:</strong> Alex García Rodríguez ·
+					<a href="/cdn-cgi/l/email-protection" class="__cf_email__"
+						data-cfemail="28494f495a4b41491a685b5c5d4c4d465c061c1a4a495a4b4d44474649064b4745">[email&#160;protected]</a>
+					·
+					<strong>Base legal:</strong> Consentimiento (Art. 6.1.a RGPD) ·
+					<strong>Finalidad:</strong> Estudio académico TFG ASIX 2026 ·
+					<strong>Conservación:</strong> Hasta evaluación del proyecto
+				</small>
 			</div>
 
 			<div class="cookie-modal-body">
 
-				<div class="cookie-rgpd-info" style="margin-top:.9rem">
-					<b>Responsable:</b> Alex García Rodríguez ·
-					<a
-						href="mailto:agarcia2@student.42barcelona.com">agarcia2@student.42barcelona.com</a><br>
-					<b>Finalidad:</b> Estudio académico sobre exposición de datos en la navegación
-					web (TFG ASIX 2026).<br>
-					<b>Base legal:</b> Consentimiento explícito del interesado (Art. 6.1.a
-					RGPD).<br>
-					<b>Destinatarios:</b> No se ceden datos a terceros. Almacenamiento en
-					repositorio privado (GitHub).<br>
-					<b>Derechos:</b> Acceso, rectificación, supresión, oposición y portabilidad —
-					contacta con el responsable.<br>
-					<b>Conservación:</b> Los datos se eliminan tras la evaluación del proyecto.
-				</div>
-
-				<div class="cookie-category">
-					<div class="cookie-category-header">
-						<div class="cookie-category-icon">🛡️</div>
-						<div class="cookie-category-info">
-							<div class="cookie-category-name">Cookies esenciales</div>
-							<div class="cookie-category-desc">Guardan tus preferencias de
-								consentimiento. Siempre activas.</div>
-						</div>
-						<label class="switch"><input type="checkbox" checked disabled><span
-								class="slider"></span></label>
+				<!-- Esenciales -->
+				<div class="ck-cat open">
+					<div class="ck-cat-header"
+						onclick="this.parentElement.classList.toggle('open')">
+						<span class="ck-cat-arrow">▲</span>
+						<span class="ck-cat-name">Cookies estrictamente necesarias</span>
+						<label class="ck-toggle" onclick="event.stopPropagation()">
+							<input type="checkbox" checked disabled>
+							<span class="ck-slider"></span>
+						</label>
 					</div>
-					<div class="cookie-detail">
-						<div class="cookie-item"><span
-								class="cookie-item-name">cookies-accepted</span><span
-								class="cookie-item-purpose">Registra si has aceptado las
-								cookies</span><span class="cookie-item-duration">1
-								año</span></div>
-						<div class="cookie-item"><span
-								class="cookie-item-name">cookies-prefs</span><span
-								class="cookie-item-purpose">Guarda tus preferencias de
-								consentimiento</span><span
-								class="cookie-item-duration">1 año</span></div>
-						<div class="cookie-item"><span
-								class="cookie-item-name">google_jwt</span><span
-								class="cookie-item-purpose">Token de sesión OAuth 2.0 de
-								Google</span><span
-								class="cookie-item-duration">Sesión</span></div>
+					<div class="ck-cat-desc">
+						Estas cookies son esenciales para el correcto funcionamiento del sitio
+						web.
+						Sin estas cookies, el sitio web no funcionaría correctamente.
 					</div>
-				</div>
-
-				<div class="cookie-category">
-					<div class="cookie-category-header">
-						<div class="cookie-category-icon">📊</div>
-						<div class="cookie-category-info">
-							<div class="cookie-category-name">Cookies analíticas del estudio
-							</div>
-							<div class="cookie-category-desc">Métricas de comportamiento:
-								tiempo en página, scroll, clicks. Uso exclusivamente
-								académico.</div>
-						</div>
-						<label class="switch"><input type="checkbox" id="cookie-analytics"
-								checked><span class="slider"></span></label>
-					</div>
-					<div class="cookie-detail">
-						<div class="cookie-item"><span
-								class="cookie-item-name">timeOnPage</span><span
-								class="cookie-item-purpose">Tiempo total en la
-								página</span><span
-								class="cookie-item-duration">Sesión</span></div>
-						<div class="cookie-item"><span
-								class="cookie-item-name">scrollDepth</span><span
-								class="cookie-item-purpose">Porcentaje máximo de
-								scroll</span><span
-								class="cookie-item-duration">Sesión</span></div>
-						<div class="cookie-item"><span class="cookie-item-name">clicks /
-								keystrokes</span><span
-								class="cookie-item-purpose">Contador de interacciones
-								con la página</span><span
-								class="cookie-item-duration">Sesión</span></div>
+					<div class="ck-table-wrap">
+						<table class="ck-table">
+							<thead>
+								<tr>
+									<th>Nombre</th>
+									<th>Dominio</th>
+									<th>Caducidad</th>
+									<th>Descripción</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>cookies-accepted</td>
+									<td>alexgrdev.github.io</td>
+									<td>1 año</td>
+									<td>Registra si el usuario ha aceptado o
+										rechazado el uso de cookies.</td>
+								</tr>
+								<tr>
+									<td>cookies-prefs</td>
+									<td>alexgrdev.github.io</td>
+									<td>1 año</td>
+									<td>Almacena las preferencias de consentimiento
+										detalladas del usuario.</td>
+								</tr>
+								<tr>
+									<td>google_jwt</td>
+									<td>alexgrdev.github.io</td>
+									<td>sesión</td>
+									<td>Token de autenticación OAuth 2.0 de Google.
+										Se elimina al cerrar el navegador.</td>
+								</tr>
+							</tbody>
+						</table>
 					</div>
 				</div>
 
-				<div class="cookie-category" style="margin-bottom:.9rem">
-					<div class="cookie-category-header">
-						<div class="cookie-category-icon">🔎</div>
-						<div class="cookie-category-info">
-							<div class="cookie-category-name">Fingerprinting del dispositivo
-							</div>
-							<div class="cookie-category-desc">Identificación técnica
-								mediante canvas hash, audio fingerprint, GPU, fuentes e
-								IP pública. <strong style="color:var(--yellow)">Dato
-									sensible</strong> — base del estudio TFG.</div>
-						</div>
-						<label class="switch"><input type="checkbox" id="cookie-fingerprint"
-								checked><span class="slider"></span></label>
+				<!-- Analíticas -->
+				<div class="ck-cat">
+					<div class="ck-cat-header"
+						onclick="this.parentElement.classList.toggle('open')">
+						<span class="ck-cat-arrow">▲</span>
+						<span class="ck-cat-name">Cookies analíticas del estudio</span>
+						<label class="ck-toggle" onclick="event.stopPropagation()">
+							<input type="checkbox" id="cookie-analytics" checked>
+							<span class="ck-slider"></span>
+						</label>
 					</div>
-					<div class="cookie-detail">
-						<div class="cookie-item"><span
-								class="cookie-item-name">canvas_hash</span><span
-								class="cookie-item-purpose">Hash único generado por la
-								GPU</span><span
-								class="cookie-item-duration">Puntual</span></div>
-						<div class="cookie-item"><span
-								class="cookie-item-name">audio_fp</span><span
-								class="cookie-item-purpose">Firma del motor de audio del
-								sistema</span><span
-								class="cookie-item-duration">Puntual</span></div>
-						<div class="cookie-item"><span
-								class="cookie-item-name">ip_public</span><span
-								class="cookie-item-purpose">IP pública obtenida por el
-								servidor</span><span
-								class="cookie-item-duration">Puntual</span></div>
-						<div class="cookie-item"><span class="cookie-item-name">fonts / gpu /
-								ram</span><span
-								class="cookie-item-purpose">Características técnicas del
-								hardware</span><span
-								class="cookie-item-duration">Puntual</span></div>
+					<div class="ck-cat-desc">
+						Estas cookies recopilan métricas de comportamiento en la página —
+						tiempo de visita, scroll, clicks, cambios de pestaña — con fines
+						exclusivamente académicos del TFG.
+					</div>
+					<div class="ck-table-wrap">
+						<table class="ck-table">
+							<thead>
+								<tr>
+									<th>Nombre</th>
+									<th>Dominio</th>
+									<th>Caducidad</th>
+									<th>Descripción</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>timeOnPage</td>
+									<td>alexgrdev.github.io</td>
+									<td>sesión</td>
+									<td>Almacena el tiempo total que el usuario
+										permanece en la página.</td>
+								</tr>
+								<tr>
+									<td>scrollDepth</td>
+									<td>alexgrdev.github.io</td>
+									<td>sesión</td>
+									<td>Registra el porcentaje máximo de scroll
+										alcanzado por el usuario.</td>
+								</tr>
+								<tr>
+									<td>clicks / keystrokes</td>
+									<td>alexgrdev.github.io</td>
+									<td>sesión</td>
+									<td>Contadores de interacciones del usuario con
+										la página.</td>
+								</tr>
+							</tbody>
+						</table>
 					</div>
 				</div>
 
-			</div>
+				<!-- Fingerprinting -->
+				<div class="ck-cat">
+					<div class="ck-cat-header"
+						onclick="this.parentElement.classList.toggle('open')">
+						<span class="ck-cat-arrow">▲</span>
+						<span class="ck-cat-name">Fingerprinting del dispositivo</span>
+						<label class="ck-toggle" onclick="event.stopPropagation()">
+							<input type="checkbox" id="cookie-fingerprint" checked>
+							<span class="ck-slider"></span>
+						</label>
+					</div>
+					<div class="ck-cat-desc">
+						Identificación técnica del dispositivo mediante canvas hash, audio
+						fingerprint,
+						GPU, fuentes instaladas e IP pública. Dato sensible — base del estudio
+						TFG.
+					</div>
+					<div class="ck-table-wrap">
+						<table class="ck-table">
+							<thead>
+								<tr>
+									<th>Nombre</th>
+									<th>Dominio</th>
+									<th>Caducidad</th>
+									<th>Descripción</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>canvas_hash</td>
+									<td>alexgrdev.github.io</td>
+									<td>puntual</td>
+									<td>Hash único generado por la GPU al renderizar
+										un canvas. Identifica el dispositivo sin
+										cookies.</td>
+								</tr>
+								<tr>
+									<td>audio_fp</td>
+									<td>alexgrdev.github.io</td>
+									<td>puntual</td>
+									<td>Firma del motor de audio del sistema.
+										Identificador estable del dispositivo.
+									</td>
+								</tr>
+								<tr>
+									<td>ip_public</td>
+									<td>tfg-tracker.workers.dev</td>
+									<td>puntual</td>
+									<td>Dirección IP pública obtenida por el
+										servidor Cloudflare Worker al recibir la
+										petición.</td>
+								</tr>
+								<tr>
+									<td>fonts / gpu / ram</td>
+									<td>alexgrdev.github.io</td>
+									<td>puntual</td>
+									<td>Características técnicas del hardware y
+										software del dispositivo del usuario.
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+
+				<!-- Más información -->
+				<div
+					style="margin:1rem 1.4rem;border:1px solid rgba(255,255,255,.08);border-radius:4px;padding:.9rem 1rem">
+					<p
+						style="font-family:'Syne',sans-serif;font-size:.88rem;font-weight:700;color:#f0f2f8;margin-bottom:.4rem">
+						Más información</p>
+					<p style="font-size:.8rem;color:#6b7280;line-height:1.65">
+						Para cualquier consulta en relación con nuestra política de cookies y
+						tus
+						elecciones, por favor
+						<a href="/cdn-cgi/l/email-protection#c5a4a2a4b7a6aca4f785b6b1b0a1a0abb1ebf1f7a7a4b7a6a0a9aaaba4eba6aaa8"
+							style="color:#ff2244;font-weight:700;text-decoration:underline">contáctanos</a>.
+						Puedes ejercer tus derechos ARCO ante la
+						<a href="https://www.aepd.es" target="_blank"
+							style="color:#ff2244;font-weight:700;text-decoration:underline">AEPD</a>.
+					</p>
+				</div>
+
+			</div><!-- /cookie-modal-body -->
 
 			<div class="cookie-modal-footer">
-				<div class="cookie-footer-links">
-					<a href="mailto:agarcia2@student.42barcelona.com">Ejercer derechos RGPD</a>
-					<a href="https://www.aepd.es" target="_blank" rel="noopener">AEPD</a>
-				</div>
-				<button id="modal-cancel" class="btn-secondary">Cancelar</button>
-				<button id="modal-save" class="btn-primary">Guardar preferencias</button>
-			</div>
+				<button id="modal-accept-all" class="ck-btn-accept">Aceptar todo</button>
+				<button id="modal-reject-all" class="ck-btn-reject">Rechazar todo</button>
 
-		</div>
-	</div>
-
-	<script>
-		document.querySelectorAll('.l-fq-btn').forEach(btn => {
-			btn.addEventListener('click', () => {
-				const item = btn.parentElement;
-				const open = item.classList.contains('open');
-				document.querySelectorAll('.l-fq').forEach(i => i.classList.remove('open'));
-				if (!open) item.classList.add('open');
-			});
-		});
-		const obs = new IntersectionObserver(entries => {
-			entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('on'); obs.unobserve(e.target); } });
-		}, { threshold: 0.08 });
-		document.querySelectorAll('.l-reveal').forEach(el => obs.observe(el));
-	</script>
+				<script>
+					document.querySelectorAll('.l-fq-btn').forEach(btn => {
+						btn.addEventListener('click', () => {
+							const item = btn.parentElement;
+							const open = item.classList.contains('open');
+							document.querySelectorAll('.l-fq').forEach(i => i.classList.remove('open'));
+							if (!open) item.classList.add('open');
+						});
+					});
+					const obs = new IntersectionObserver(entries => {
+						entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('on'); obs.unobserve(e.target); } });
+					}, { threshold: 0.08 });
+					document.querySelectorAll('.l-reveal').forEach(el => obs.observe(el));
+				</script>
 
 </body>
 

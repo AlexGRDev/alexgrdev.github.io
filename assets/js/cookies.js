@@ -6,16 +6,16 @@
 /*   By: agarcia2 <agarcia2@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/27 09:15:20 by agarcia2          #+#    #+#             */
-/*   Updated: 2026/03/14 09:32:58 by agarcia2         ###   ########.fr       */
+/*   Updated: 2026/03/14 14:50:17 by agarcia2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 const COOKIES_KEY = "cookies-accepted";
-const PREFS_KEY = "cookies-prefs";
+const PREFS_KEY   = "cookies-prefs";
 
 function getBanner() { return document.getElementById("cookie-banner"); }
-function getModal() { return document.getElementById("cookie-modal"); }
-function hideBanner() { getBanner()?.classList.add("hidden"); }
+function getModal()  { return document.getElementById("cookie-modal"); }
+function hideBanner(){ getBanner()?.classList.add("hidden"); }
 function hideModal() { getModal()?.classList.add("hidden"); }
 function showModal() { getModal()?.classList.remove("hidden"); }
 
@@ -34,7 +34,7 @@ function savePrefs(prefs) {
 function callTracker(prefs) {
 	let googleData = null;
 	try { googleData = JSON.parse(sessionStorage.getItem("tfg_user") || "null"); }
-	catch (_) { }
+	catch (_) {}
 
 	if (!googleData?.sub) return; // sin login, no enviamos
 
@@ -59,16 +59,16 @@ function onReject() {
 
 function onOpenConfig() {
 	const saved = getPrefs();
-	const chkA = document.getElementById("cookie-analytics");
-	const chkF = document.getElementById("cookie-fingerprint");
-	if (chkA) chkA.checked = saved.analytics ?? true;
+	const chkA  = document.getElementById("cookie-analytics");
+	const chkF  = document.getElementById("cookie-fingerprint");
+	if (chkA) chkA.checked = saved.analytics  ?? true;
 	if (chkF) chkF.checked = saved.fingerprint ?? true;
 	showModal();
 }
 
 function onSavePrefs() {
-	const chkA = document.getElementById("cookie-analytics");
-	const chkF = document.getElementById("cookie-fingerprint");
+	const chkA  = document.getElementById("cookie-analytics");
+	const chkF  = document.getElementById("cookie-fingerprint");
 	const prefs = { analytics: chkA?.checked ?? false, fingerprint: chkF?.checked ?? false };
 	savePrefs(prefs); hideBanner(); hideModal(); callTracker(prefs);
 }
@@ -83,6 +83,12 @@ function initCookies() {
 	document.getElementById("cookie-config")?.addEventListener("click", onOpenConfig);
 	document.getElementById("modal-save")?.addEventListener("click", onSavePrefs);
 	document.getElementById("modal-cancel")?.addEventListener("click", hideModal);
+	document.getElementById("modal-accept-all")?.addEventListener("click", () => {
+		onAcceptAll(); hideModal();
+	});
+	document.getElementById("modal-reject-all")?.addEventListener("click", () => {
+		onReject(); hideModal();
+	});
 	getModal()?.addEventListener("click", e => { if (e.target === getModal()) hideModal(); });
 }
 
