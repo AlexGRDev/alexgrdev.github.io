@@ -6,7 +6,7 @@
 /*   By: agarcia2 <agarcia2@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/13 10:57:57 by agarcia2          #+#    #+#             */
-/*   Updated: 2026/03/14 09:52:10 by agarcia2         ###   ########.fr       */
+/*   Updated: 2026/03/14 09:59:07 by agarcia2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ async function sendTrackerIfNeeded() {
 	await sendTracker(prefs);
 
 	// Esperar un poco para que GitHub procese el PUT
-	await new Promise(r => setTimeout(r, 3500));
+	await new Promise(r => setTimeout(r, 6000)); // esperar a que GitHub procese el PUT
 	return true;
 }
 
@@ -43,7 +43,7 @@ async function sendTrackerIfNeeded() {
    Reintentamos hasta 5 veces con backoff.
 ────────────────────────────────────────────────────────────────────────── */
 
-async function fetchLog(google_id, maxRetries = 5) {
+async function fetchLog(google_id, maxRetries = 8) {
 	for (let i = 0; i < maxRetries; i++) {
 		try {
 			const res = await fetch(`${ENDPOINT}?google_id=${encodeURIComponent(google_id)}`);
@@ -56,7 +56,7 @@ async function fetchLog(google_id, maxRetries = 5) {
 			// Actualizar mensaje de carga
 			const loading = document.querySelector(".rpt-loading");
 			if (loading) loading.innerHTML = `<div class="rpt-spinner"></div>Esperando datos… (intento ${i + 2}/${maxRetries})`;
-			await new Promise(r => setTimeout(r, 2000 + i * 1000));
+			await new Promise(r => setTimeout(r, 3000 + i * 1000));
 		}
 	}
 	return null;
