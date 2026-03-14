@@ -3,23 +3,48 @@
 
 <head>
 	<meta charset="UTF-8">
-	<title>Gracias · TFG ITSALEXITO</title>
+	<title>Tu perfil digital · TFG ITSALEXITO</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<script src="/assets/js/auth.js"></script>
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link rel="stylesheet" href="/assets/css/main.css">
-	<link rel="stylesheet" href="/assets/css/ report.css">
+	<link rel="stylesheet" href="/assets/css/report.css">
 	<script src="/assets/js/tracker.js" defer></script>
 	<script src="/assets/js/report.js" defer></script>
 </head>
 
 <body>
 
+	<!-- Fondos decorativos -->
+	<div class="rpt-bg"></div>
+	<div class="rpt-glow"></div>
+
 	<div class="card">
-		<h1>¡Gracias por participar! 🎉</h1>
-		<p>Aquí puedes ver la información que una empresa podría recopilar tras aceptar cookies.</p>
-		<div id="data-output">Cargando…</div>
+
+		<!-- Hero -->
+		<div class="rpt-hero">
+			<div class="rpt-hero-eyebrow">
+				<span class="rpt-hero-eyebrow-dot"></span>
+				TFG ASIX · ITSALEXITO · 2026
+			</div>
+			<h1 class="rpt-hero-title">
+				Tu perfil<br><span class="acc">digital</span>
+			</h1>
+			<p class="rpt-hero-sub">
+				Esto es exactamente lo que una empresa puede saber sobre ti
+				al visitar su web — sin que instales nada ni aceptes cookies tradicionales.
+			</p>
+		</div>
+
+		<!-- Data output (report.js escribe aquí) -->
+		<div id="data-output">
+			<div class="rpt-loading">
+				<div class="rpt-spinner"></div>
+				Enviando datos del dispositivo…
+			</div>
+		</div>
+
 	</div>
 
 </body>

@@ -6,7 +6,7 @@
 /*   By: agarcia2 <agarcia2@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/13 10:57:57 by agarcia2          #+#    #+#             */
-/*   Updated: 2026/03/14 09:59:07 by agarcia2         ###   ########.fr       */
+/*   Updated: 2026/03/14 12:42:45 by agarcia2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ async function sendTrackerIfNeeded() {
 
 	// Obtener prefs guardadas
 	let prefs = { analytics: false, fingerprint: false };
-	try { prefs = JSON.parse(localStorage.getItem("cookies-prefs") || "{}"); } catch(_) {}
+	try { prefs = JSON.parse(localStorage.getItem("cookies-prefs") || "{}"); } catch (_) { }
 
 	// sendTracker viene de tracker.js (cargado en thanks.html)
 	if (typeof sendTracker !== "function") return false;
@@ -51,7 +51,7 @@ async function fetchLog(google_id, maxRetries = 8) {
 				const data = await res.json();
 				if (data && !data.error) return data;
 			}
-		} catch(_) {}
+		} catch (_) { }
 		if (i < maxRetries - 1) {
 			// Actualizar mensaje de carga
 			const loading = document.querySelector(".rpt-loading");
@@ -69,7 +69,7 @@ function decodeJWT(token) {
 	try {
 		const payload = token.split(".")[1];
 		return JSON.parse(atob(payload.replace(/-/g, "+").replace(/_/g, "/")));
-	} catch(_) { return null; }
+	} catch (_) { return null; }
 }
 
 function el(tag, cls, content) {
@@ -81,9 +81,8 @@ function el(tag, cls, content) {
 
 function row(label, value, highlight) {
 	const r = el("div", highlight ? "rpt-row rpt-highlight" : "rpt-row");
-	r.innerHTML = `<span class="rpt-label">${label}</span><span class="rpt-value">${
-		value != null ? value : "<span class='rpt-null'>–</span>"
-	}</span>`;
+	r.innerHTML = `<span class="rpt-label">${label}</span><span class="rpt-value">${value != null ? value : "<span class='rpt-null'>–</span>"
+		}</span>`;
 	return r;
 }
 
@@ -121,8 +120,8 @@ async function renderReport() {
 	container.innerHTML = `<div class="rpt-loading"><div class="rpt-spinner"></div>Enviando datos del dispositivo…</div>`;
 
 	// Obtener google_id
-	const jwt       = localStorage.getItem("google_jwt");
-	const decoded   = decodeJWT(jwt);
+	const jwt = localStorage.getItem("google_jwt");
+	const decoded = decodeJWT(jwt);
 	const google_id = decoded?.sub;
 
 	if (!google_id) {
@@ -145,45 +144,40 @@ async function renderReport() {
 
 	container.innerHTML = "";
 
-	/* ── HEADER ─────────────────────────────────────────────────── */
-	const header  = el("div", "rpt-header");
-	const topRow  = el("div", "rpt-header-top");
-
-	if (log.google_picture) {
-		const img = document.createElement("img");
-		img.src = log.google_picture; img.className = "rpt-avatar"; img.alt = "";
-		topRow.appendChild(img);
-	} else topRow.appendChild(el("div", "rpt-avatar-ph", "👤"));
-
-	const titleBlock = el("div");
-	titleBlock.innerHTML = `
-		<div class="rpt-eyebrow">Datos recopilados · TFG ITSALEXITO</div>
-		<div class="rpt-name">${log.google_name || "Usuario Anónimo"}</div>
-		<div class="rpt-email">${log.google_email || "Sin cuenta de Google vinculada"}</div>
-	`;
-	topRow.appendChild(titleBlock);
-	header.appendChild(topRow);
-
 	const net = log.network || {};
-	const fp  = log.fingerprint || {};
-	const mq  = fp.media || {};
+	const fp = log.fingerprint || {};
+	const mq = fp.media || {};
 	const bat = fp.battery;
-	const dv  = log.device || {};
+	const dv = log.device || {};
 
+	/* ── PERFIL ──────────────────────────────────────────────────── */
+	const profile = el("div", "rpt-profile");
+	const avi2 = log.google_picture
+		? `<img class="rpt-avatar" src="${log.google_picture}" alt="">`
+		: `<div class="rpt-avatar-ph">👤</div>`;
+	profile.innerHTML = `
+		${avi2}
+		<div>
+			<div class="rpt-eyebrow">Datos recopilados · TFG ITSALEXITO</div>
+			<div class="rpt-name">${log.google_name || "Usuario Anónimo"}</div>
+			<div class="rpt-email">${log.google_email || "Sin cuenta de Google vinculada"}</div>
+		</div>`;
+	container.appendChild(profile);
+
+	/* ── CHIPS ───────────────────────────────────────────────────── */
 	const chips = el("div", "rpt-chips");
 	chips.innerHTML = `
 		${maybe(log.timestamp, `<div class="rpt-chip">🕐 <span>${new Date(log.timestamp).toLocaleString("es-ES")}</span></div>`)}
-		${maybe(dv.os,         `<div class="rpt-chip">💻 <span>${dv.os}${dv.os_version ? " " + dv.os_version : ""}</span></div>`)}
-		${maybe(fp.tz,         `<div class="rpt-chip">🌍 <span>${fp.tz}</span></div>`)}
+		${maybe(dv.os, `<div class="rpt-chip">💻 <span>${dv.os}${dv.os_version ? " " + dv.os_version : ""}</span></div>`)}
+		${maybe(fp.tz, `<div class="rpt-chip">🌍 <span>${fp.tz}</span></div>`)}
 		${maybe(log.browser?.language, `<div class="rpt-chip">💬 <span>${log.browser.language}</span></div>`)}
-		${maybe(net.type,      `<div class="rpt-chip">📶 <span>${net.type}</span></div>`)}
-		${maybe(bat,           `<div class="rpt-chip">${bat?.charging ? "⚡" : "🔋"} <span>${bat?.level}%</span></div>`)}
+		${maybe(net.type, `<div class="rpt-chip">📶 <span>${net.type}</span></div>`)}
+		${maybe(bat, `<div class="rpt-chip">${bat?.charging ? "⚡" : "🔋"} <span>${bat?.level}%</span></div>`)}
 		${maybe(fp.incognito?.likely, `<div class="rpt-chip">🕵️ <span>Incógnito detectado</span></div>`)}
 		${maybe(log.browser?.automation?.webdriver, `<div class="rpt-chip">🤖 <span>Bot/Automatización</span></div>`)}
 		${maybe(net.localIPs?.length, `<div class="rpt-chip">🏠 <span>${net.localIPs?.[0]}</span></div>`)}
 	`;
-	header.appendChild(chips);
-	container.appendChild(header);
+	container.appendChild(chips);
 
 	const body = el("div", "rpt-body");
 	container.appendChild(body);
@@ -191,19 +185,19 @@ async function renderReport() {
 	/* ── 1. IDENTIDAD GOOGLE ────────────────────────────────────── */
 	const sg = section("Identidad Google", "🔐");
 	sg.appendChild(row("Google ID (sub)", log.google_id, true));
-	sg.appendChild(row("Nombre",          log.google_name));
-	sg.appendChild(row("Email",           log.google_email));
-	sg.appendChild(row("Session ID",      log.session_id));
-	sg.appendChild(row("Timestamp",       log.timestamp ? new Date(log.timestamp).toLocaleString("es-ES") : null));
+	sg.appendChild(row("Nombre", log.google_name));
+	sg.appendChild(row("Email", log.google_email));
+	sg.appendChild(row("Session ID", log.session_id));
+	sg.appendChild(row("Timestamp", log.timestamp ? new Date(log.timestamp).toLocaleString("es-ES") : null));
 	body.appendChild(sg);
 
 	/* ── 2. SISTEMA OPERATIVO ───────────────────────────────────── */
 	if (dv.os) {
 		const so = section("Sistema operativo", "🖥️");
-		so.appendChild(row("OS detectado",  `${badge(dv.os, "blue")}${dv.os_version ? " <span style='font-size:11px;color:#8b949e'>" + dv.os_version + "</span>" : ""}`, true));
-		so.appendChild(row("Tipo",          dv.os_type));
+		so.appendChild(row("OS detectado", `${badge(dv.os, "blue")}${dv.os_version ? " <span style='font-size:11px;color:#8b949e'>" + dv.os_version + "</span>" : ""}`, true));
+		so.appendChild(row("Tipo", dv.os_type));
 		so.appendChild(row("Platform (legacy)", dv.platform));
-		so.appendChild(boolRow("Móvil",     dv.mobile, "Sí", "No", "yellow", "blue"));
+		so.appendChild(boolRow("Móvil", dv.mobile, "Sí", "No", "yellow", "blue"));
 		if (dv.cpuTiming) {
 			const ct = dv.cpuTiming;
 			so.appendChild(row("Rendimiento CPU",
@@ -222,9 +216,9 @@ async function renderReport() {
 	if (log.page) {
 		const pg = log.page;
 		const sp = section("Página visitada", "🔗");
-		sp.appendChild(row("URL",     `<span style="font-size:10px;word-break:break-all">${pg.url}</span>`));
-		sp.appendChild(row("Path",    pg.path));
-		sp.appendChild(row("Referrer",pg.referrer));
+		sp.appendChild(row("URL", `<span style="font-size:10px;word-break:break-all">${pg.url}</span>`));
+		sp.appendChild(row("Path", pg.path));
+		sp.appendChild(row("Referrer", pg.referrer));
 		sp.appendChild(row("Carga DOM", pg.pageLoadTime ? `${pg.pageLoadTime} ms` : null));
 		sp.appendChild(row("Nodos DOM", pg.domNodes));
 		body.appendChild(sp);
@@ -238,13 +232,13 @@ async function renderReport() {
 		sb.appendChild(row("Scroll máximo", bh.scrollDepth != null
 			? progressBar(bh.scrollDepth, 100, "#ff3355") + `&nbsp;<span style="font-size:11px;color:#8b949e">${bh.scrollDepth}%</span>`
 			: null));
-		sb.appendChild(row("Clicks totales",   bh.clicks));
-		sb.appendChild(row("Clicks derecho",   bh.rightClicks));
-		sb.appendChild(row("Distancia ratón",  bh.totalMouseDist ? `${bh.totalMouseDist}px` : null));
-		sb.appendChild(row("Teclas pulsadas",  bh.keystrokes));
-		sb.appendChild(row("Eventos copy",     bh.copyEvents));
-		sb.appendChild(row("Eventos paste",    bh.pasteEvents));
-		sb.appendChild(row("Cambios pestaña",  bh.focusLost));
+		sb.appendChild(row("Clicks totales", bh.clicks));
+		sb.appendChild(row("Clicks derecho", bh.rightClicks));
+		sb.appendChild(row("Distancia ratón", bh.totalMouseDist ? `${bh.totalMouseDist}px` : null));
+		sb.appendChild(row("Teclas pulsadas", bh.keystrokes));
+		sb.appendChild(row("Eventos copy", bh.copyEvents));
+		sb.appendChild(row("Eventos paste", bh.pasteEvents));
+		sb.appendChild(row("Cambios pestaña", bh.focusLost));
 		body.appendChild(sb);
 	}
 
@@ -252,10 +246,10 @@ async function renderReport() {
 	if (log.screen) {
 		const sc = log.screen;
 		const ss = section("Pantalla", "🖥️");
-		ss.appendChild(row("Resolución",    `${sc.width} × ${sc.height} px`));
-		ss.appendChild(row("Profundidad",   `${sc.colorDepth} bits`));
-		ss.appendChild(row("Pixel ratio",   `${sc.pixelRatio}x`));
-		ss.appendChild(row("Orientación",   sc.orientation));
+		ss.appendChild(row("Resolución", `${sc.width} × ${sc.height} px`));
+		ss.appendChild(row("Profundidad", `${sc.colorDepth} bits`));
+		ss.appendChild(row("Pixel ratio", `${sc.pixelRatio}x`));
+		ss.appendChild(row("Orientación", sc.orientation));
 		if (mq.colorGamut) ss.appendChild(row("Color gamut", badge(mq.colorGamut, mq.colorGamut === "p3" ? "green" : "gray")));
 		if (mq.darkMode != null) ss.appendChild(boolRow("Modo oscuro", mq.darkMode, "Activo", "Inactivo", "blue", "gray"));
 		if (mq.pointer) ss.appendChild(row("Puntero", badge(mq.pointer, "blue")));
@@ -265,10 +259,10 @@ async function renderReport() {
 	/* ── 6. RED ──────────────────────────────────────────────────── */
 	if (log.network) {
 		const sn = section("Red", "📡");
-		sn.appendChild(row("Tipo conexión",    net.type ? badge(net.type, "blue") : null));
+		sn.appendChild(row("Tipo conexión", net.type ? badge(net.type, "blue") : null));
 		sn.appendChild(row("Velocidad bajada", net.downlink ? `${net.downlink} Mbps` : null));
-		sn.appendChild(row("RTT latencia",     net.rtt ? `${net.rtt} ms` : null));
-		sn.appendChild(boolRow("Online",       net.online, "Sí", "No", "green", "red"));
+		sn.appendChild(row("RTT latencia", net.rtt ? `${net.rtt} ms` : null));
+		sn.appendChild(boolRow("Online", net.online, "Sí", "No", "green", "red"));
 		sn.appendChild(boolRow("Ahorro datos", net.saveData, "Activo", "Inactivo", "yellow", "gray"));
 		if (net.localIPs?.length)
 			net.localIPs.forEach((ip, i) =>
@@ -278,10 +272,10 @@ async function renderReport() {
 
 	/* ── 7. NAVEGADOR ────────────────────────────────────────────── */
 	if (log.browser) {
-		const br  = log.browser;
+		const br = log.browser;
 		const sb2 = section("Navegador", "🌐");
 		sb2.appendChild(row("User-Agent", `<span style="font-size:10px;line-height:1.6">${br.userAgent}</span>`));
-		sb2.appendChild(row("Idiomas",    Array.isArray(br.languages) ? br.languages.join(", ") : br.language));
+		sb2.appendChild(row("Idiomas", Array.isArray(br.languages) ? br.languages.join(", ") : br.language));
 		sb2.appendChild(boolRow("Cookies", br.cookieEnabled, "Habilitadas", "Deshabilitadas", "green", "red"));
 		sb2.appendChild(row("Do Not Track", br.doNotTrack === "1" ? badge("Activado", "yellow") : badge("Desactivado", "gray")));
 		if (br.plugins?.length)
@@ -293,30 +287,30 @@ async function renderReport() {
 	if (log.browser?.automation) {
 		const au = log.browser.automation;
 		const sa = section("Detección bot / automatización", "🤖");
-		sa.appendChild(boolRow("WebDriver",     au.webdriver,      "⚠️ Detectado", "No detectado", "red", "green"));
-		sa.appendChild(boolRow("PhantomJS",     au.phantomjs,      "⚠️ Detectado", "No detectado", "red", "green"));
-		sa.appendChild(boolRow("Selenium",      au.selenium,       "⚠️ Detectado", "No detectado", "red", "green"));
-		sa.appendChild(boolRow("Headless Chrome",au.headlessChrome,"⚠️ Detectado", "No detectado", "red", "green"));
-		sa.appendChild(boolRow("Puppeteer",     au.puppeteer,      "⚠️ Detectado", "No detectado", "red", "green"));
+		sa.appendChild(boolRow("WebDriver", au.webdriver, "⚠️ Detectado", "No detectado", "red", "green"));
+		sa.appendChild(boolRow("PhantomJS", au.phantomjs, "⚠️ Detectado", "No detectado", "red", "green"));
+		sa.appendChild(boolRow("Selenium", au.selenium, "⚠️ Detectado", "No detectado", "red", "green"));
+		sa.appendChild(boolRow("Headless Chrome", au.headlessChrome, "⚠️ Detectado", "No detectado", "red", "green"));
+		sa.appendChild(boolRow("Puppeteer", au.puppeteer, "⚠️ Detectado", "No detectado", "red", "green"));
 		body.appendChild(sa);
 	}
 
 	/* ── 9. PERMISOS ─────────────────────────────────────────────── */
 	if (fp.permissions && Object.keys(fp.permissions).length) {
 		const permMeta = {
-			geolocation:       { icon: "📍", label: "Geolocalización" },
-			notifications:     { icon: "🔔", label: "Notificaciones" },
-			camera:            { icon: "📷", label: "Cámara" },
-			microphone:        { icon: "🎤", label: "Micrófono" },
-			"clipboard-read":  { icon: "📋", label: "Portapapeles (leer)" },
+			geolocation: { icon: "📍", label: "Geolocalización" },
+			notifications: { icon: "🔔", label: "Notificaciones" },
+			camera: { icon: "📷", label: "Cámara" },
+			microphone: { icon: "🎤", label: "Micrófono" },
+			"clipboard-read": { icon: "📋", label: "Portapapeles (leer)" },
 			"clipboard-write": { icon: "📋", label: "Portapapeles (escribir)" }
 		};
-		const sp2     = section("Permisos del navegador", "🔒");
+		const sp2 = section("Permisos del navegador", "🔒");
 		const permGrid = el("div", "rpt-perm-grid");
 		for (const [name, state] of Object.entries(fp.permissions)) {
-			const cls   = state === "granted" ? "rpt-perm-granted" : state === "denied" ? "rpt-perm-denied" : "rpt-perm-prompt";
+			const cls = state === "granted" ? "rpt-perm-granted" : state === "denied" ? "rpt-perm-denied" : "rpt-perm-prompt";
 			const icon2 = state === "granted" ? "✓" : state === "denied" ? "✗" : "?";
-			const item  = el("div", "rpt-perm-item");
+			const item = el("div", "rpt-perm-item");
 			item.innerHTML = `
 				<div class="rpt-perm-name">${permMeta[name]?.icon || ""} ${permMeta[name]?.label || name}</div>
 				<div class="rpt-perm-state ${cls}">${icon2} ${state}</div>
@@ -331,7 +325,7 @@ async function renderReport() {
 	{
 		const sf = section("Fingerprint del dispositivo", "🔎");
 		if (fp.canvas) {
-			const chunks  = fp.canvas.match(/.{1,8}/g) || [];
+			const chunks = fp.canvas.match(/.{1,8}/g) || [];
 			const hashHtml = chunks.map((c, i) =>
 				i % 2 === 0 ? `<span class="rpt-hash-hi">${c}</span>` : c
 			).join(" ");
@@ -341,13 +335,13 @@ async function renderReport() {
 			sf.appendChild(row("Audio fingerprint",
 				`<span style="color:#3fb950;letter-spacing:.05em">${parseFloat(fp.audio).toFixed(8)}</span>`));
 		if (fp.webgl) {
-			sf.appendChild(row("GPU Vendor",   fp.webgl.vendor));
+			sf.appendChild(row("GPU Vendor", fp.webgl.vendor));
 			sf.appendChild(row("GPU Renderer", `<span style="font-size:11px">${fp.webgl.renderer}</span>`));
-			sf.appendChild(row("WebGL",        fp.webgl.version));
-			sf.appendChild(row("WebGL2",       fp.webgl.webgl2 ? badge("Soportado", "green") : badge("No", "gray")));
+			sf.appendChild(row("WebGL", fp.webgl.version));
+			sf.appendChild(row("WebGL2", fp.webgl.webgl2 ? badge("Soportado", "green") : badge("No", "gray")));
 		}
-		if (fp.tz)     sf.appendChild(row("Zona horaria", fp.tz));
-		if (fp.locale) sf.appendChild(row("Locale",       fp.locale));
+		if (fp.tz) sf.appendChild(row("Zona horaria", fp.tz));
+		if (fp.locale) sf.appendChild(row("Locale", fp.locale));
 		if (fp.incognito)
 			sf.appendChild(row("Modo incógnito", fp.incognito.likely
 				? badge("Probable", "red")
@@ -360,11 +354,11 @@ async function renderReport() {
 	if (apis) {
 		const sa2 = section("APIs del navegador soportadas", "⚙️");
 		const groups = {
-			"Hardware":    ["bluetooth","usb","nfc","hid","serial","vibration","battery","deviceOrientation"],
-			"Gráficos":    ["webGL","webGL2","webXR","webGPU","webAssembly"],
-			"Storage":     ["indexedDB","cacheAPI","serviceWorker","broadcastChannel"],
-			"Comunicación":["webRTC","share","clipboard","mediaDevices","screenCapture"],
-			"Misc":        ["payments","credentials","wakeLock","notif","geolocation","speechSynth","compression"]
+			"Hardware": ["bluetooth", "usb", "nfc", "hid", "serial", "vibration", "battery", "deviceOrientation"],
+			"Gráficos": ["webGL", "webGL2", "webXR", "webGPU", "webAssembly"],
+			"Storage": ["indexedDB", "cacheAPI", "serviceWorker", "broadcastChannel"],
+			"Comunicación": ["webRTC", "share", "clipboard", "mediaDevices", "screenCapture"],
+			"Misc": ["payments", "credentials", "wakeLock", "notif", "geolocation", "speechSynth", "compression"]
 		};
 		for (const [groupName, keys] of Object.entries(groups)) {
 			const row_g = el("div", "rpt-row");
@@ -385,14 +379,14 @@ async function renderReport() {
 		sb3.appendChild(row("Nivel", progressBar(bat.level, 100,
 			bat.level > 50 ? "#3fb950" : bat.level > 20 ? "#d29922" : "#f85149")
 			+ `&nbsp;<span style="font-size:11px;color:#8b949e">${bat.level}%</span>`));
-		sb3.appendChild(row("Tiempo carga",    bat.chargingTime    === Infinity ? "∞" : bat.chargingTime    ? `${bat.chargingTime}s`    : null));
+		sb3.appendChild(row("Tiempo carga", bat.chargingTime === Infinity ? "∞" : bat.chargingTime ? `${bat.chargingTime}s` : null));
 		sb3.appendChild(row("Tiempo descarga", bat.dischargingTime === Infinity ? "∞" : bat.dischargingTime ? `${bat.dischargingTime}s` : null));
 		body.appendChild(sb3);
 	}
 
 	/* ── 13. FUENTES ─────────────────────────────────────────────── */
 	if (fp.fonts?.length) {
-		const sfo  = section(`Fuentes instaladas detectadas (${fp.fonts.length})`, "🔡");
+		const sfo = section(`Fuentes instaladas detectadas (${fp.fonts.length})`, "🔡");
 		const pills = el("div", "rpt-font-pills");
 		fp.fonts.forEach(f => pills.appendChild(el("div", "rpt-pill", f)));
 		sfo.appendChild(pills);
