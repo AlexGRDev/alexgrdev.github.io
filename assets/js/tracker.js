@@ -6,13 +6,10 @@
 /*   By: agarcia2 <agarcia2@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/27 08:44:08 by agarcia2          #+#    #+#             */
-/*   Updated: 2026/03/14 09:18:26 by agarcia2         ###   ########.fr       */
+/*   Updated: 2026/03/14 09:52:27 by agarcia2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-/* ────────────────────────────────────────────────────────────────────────── */
-/* OS DETECTION — User-Agent parsing (más fiable que navigator.platform)      */
-/* ────────────────────────────────────────────────────────────────────────── */
 
 function detectOS(ua) {
   ua = ua || navigator.userAgent;
@@ -507,8 +504,8 @@ const WORKER_URL = "https://tfg-tracker.alexgaro2015-5ed.workers.dev";
 
 async function sendTracker(prefs) {
   try {
-    let googleData = null;
-    try { googleData = JSON.parse(sessionStorage.getItem("tfg_user") || "null"); } catch(_) {}
+    const jwt = localStorage.getItem("google_jwt");
+    let googleData = jwt ? JSON.parse(atob(jwt.split(".")[1].replace(/-/g,"+").replace(/_/g,"/"))) : null;
     const payload = await buildPayload(prefs, googleData);
     fetch(WORKER_URL, {
       method:  "POST",

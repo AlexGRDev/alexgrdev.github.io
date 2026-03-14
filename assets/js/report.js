@@ -6,7 +6,7 @@
 /*   By: agarcia2 <agarcia2@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/13 10:57:57 by agarcia2          #+#    #+#             */
-/*   Updated: 2026/03/14 09:38:42 by agarcia2         ###   ########.fr       */
+/*   Updated: 2026/03/14 09:52:10 by agarcia2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ const ENDPOINT = "https://tfg-tracker.alexgaro2015-5ed.workers.dev";
 
 async function sendTrackerIfNeeded() {
 	// Solo enviamos si hay google_id real
-	let googleData = null;
-	try { googleData = JSON.parse(sessionStorage.getItem("tfg_user") || "null"); } catch(_) {}
+	const jwt2 = localStorage.getItem("google_jwt");
+	let googleData = jwt2 ? decodeJWT(jwt2) : null;
 	if (!googleData?.sub) return false;
 
 	// Obtener prefs guardadas
