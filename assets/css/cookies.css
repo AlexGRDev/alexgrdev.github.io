@@ -5,12 +5,11 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: agarcia2 <agarcia2@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/03/16 10:43:28 by agarcia2          #+#    #+#             */
-/*   Updated: 2026/03/16 10:43:30 by agarcia2         ###   ########.fr       */
+/*   Created: 2026/03/16 11:22:39 by agarcia2          #+#    #+#             */
+/*   Updated: 2026/03/16 11:54:37 by agarcia2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-/* ── Variables compartidas ───────────────────────────────────────────────── */
 :root {
 	--ck-accent: #ff2244;
 	--ck-bg: #0b0e15;
@@ -23,14 +22,18 @@
 	--ck-radius: 4px;
 }
 
-/* ── Banner inferior ─────────────────────────────────────────────────────── */
+/* overlay + centrado */
 .cookie-banner {
 	position: fixed;
-	bottom: 0;
-	left: 0;
-	right: 0;
+	inset: 0;
 	z-index: 9000;
-	animation: ckSlideUp .35s cubic-bezier(.4, 0, .2, 1) both;
+	background: rgba(0, 0, 0, .75);
+	backdrop-filter: blur(8px);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 1.5rem;
+	animation: ckFadeIn .3s ease both;
 }
 
 .cookie-banner.hidden {
@@ -39,32 +42,32 @@
 
 .cookie-box {
 	background: var(--ck-bg);
+	border: 1px solid rgba(255, 34, 68, .25);
 	border-top: 3px solid var(--ck-accent);
-	padding: 1.5rem 2rem;
-	max-width: 680px;
-	margin: 0 auto;
-	box-shadow: 0 -4px 32px rgba(0, 0, 0, .6);
-	border-radius: var(--ck-radius) var(--ck-radius) 0 0;
+	border-radius: 6px;
+	padding: 2rem 2.25rem 1.75rem;
+	width: min(560px, 100%);
+	box-shadow: 0 24px 80px rgba(0, 0, 0, .8);
+	position: relative;
+	animation: ckSlideUp .35s cubic-bezier(.4, 0, .2, 1) both;
 }
 
 .cookie-box h3 {
 	font-family: 'Syne', sans-serif;
-	font-size: 1.1rem;
+	font-size: 1.15rem;
 	font-weight: 800;
 	color: var(--ck-white);
-	margin-bottom: .6rem;
+	margin-bottom: .55rem;
 }
 
-.cookie-box>p,
 .cookie-box-text {
-	font-size: .85rem;
+	font-size: .82rem;
 	color: var(--ck-text);
-	line-height: 1.65;
-	margin-bottom: 1.1rem;
+	line-height: 1.7;
+	margin-bottom: 1.4rem;
 }
 
-.cookie-box-text a,
-.cookie-box a {
+.cookie-box-text a {
 	color: var(--ck-accent);
 	font-weight: 700;
 	text-decoration: underline;
@@ -72,55 +75,71 @@
 }
 
 .cookie-actions {
-	display: flex;
-	gap: .75rem;
-	flex-wrap: wrap;
-	flex-direction: row-reverse;
-	justify-content: flex-start;
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: .6rem;
 }
 
-/* ── Botones estilo datax ────────────────────────────────────────────────── */
+.cookie-more {
+	grid-column: 1 / -1;
+	background: none;
+	border: none;
+	color: var(--ck-muted);
+	font-family: 'Space Mono', monospace;
+	font-size: .6rem;
+	letter-spacing: .1em;
+	text-decoration: underline;
+	text-underline-offset: 2px;
+	cursor: pointer;
+	padding: 0;
+	text-align: center;
+	margin-top: .25rem;
+	transition: color .2s;
+}
+
+.cookie-more:hover {
+	color: var(--ck-text);
+}
+
+/* botones del banner — mismo tamaño, grid */
+.btn-primary,
+.btn-secondary {
+	font-family: 'Space Mono', monospace;
+	font-size: .72rem;
+	font-weight: 700;
+	letter-spacing: .06em;
+	text-transform: uppercase;
+	cursor: pointer;
+	border-radius: var(--ck-radius);
+	padding: .8rem 1rem;
+	width: 100%;
+	text-align: center;
+	transition: filter .2s, transform .1s;
+	border: none;
+}
+
 .btn-primary {
 	background: var(--ck-accent);
-	border: none;
-	border-radius: var(--ck-radius);
 	color: #fff;
-	cursor: pointer;
-	font-family: 'Space Mono', monospace;
-	font-size: .8rem;
-	font-weight: 700;
-	letter-spacing: .04em;
-	padding: .75rem 1.5rem;
-	transition: filter .2s;
-	flex: 1;
-	min-width: 140px;
-}
-
-.btn-primary:hover {
-	filter: brightness(1.15);
 }
 
 .btn-secondary {
-	background: var(--ck-accent);
-	border: none;
-	border-radius: var(--ck-radius);
-	color: #fff;
-	cursor: pointer;
-	font-family: 'Space Mono', monospace;
-	font-size: .8rem;
-	font-weight: 700;
-	letter-spacing: .04em;
-	padding: .75rem 1.5rem;
-	transition: filter .2s;
-	flex: 1;
-	min-width: 140px;
+	background: rgba(255, 34, 68, .1);
+	border: 1px solid rgba(255, 34, 68, .28);
+	color: var(--ck-accent);
+}
+
+.btn-primary:hover {
+	filter: brightness(1.12);
+	transform: translateY(-1px);
 }
 
 .btn-secondary:hover {
-	filter: brightness(1.15);
+	background: rgba(255, 34, 68, .18);
+	transform: translateY(-1px);
 }
 
-/* ── Modal ───────────────────────────────────────────────────────────────── */
+/* modal de preferencias */
 .cookie-modal {
 	position: fixed;
 	inset: 0;
@@ -148,7 +167,6 @@
 	overflow: hidden;
 }
 
-/* Header del modal */
 .cookie-modal-head {
 	display: flex;
 	align-items: center;
@@ -166,14 +184,14 @@
 }
 
 .cookie-modal-close {
-	width: 36px;
-	height: 36px;
+	width: 32px;
+	height: 32px;
 	background: var(--ck-accent);
 	border: none;
 	border-radius: var(--ck-radius);
 	color: #fff;
 	cursor: pointer;
-	font-size: 1rem;
+	font-size: .9rem;
 	font-weight: 700;
 	display: flex;
 	align-items: center;
@@ -186,10 +204,9 @@
 	filter: brightness(1.15);
 }
 
-/* Intro del modal */
 .cookie-modal-intro {
 	padding: 1rem 1.4rem;
-	font-size: .82rem;
+	font-size: .8rem;
 	color: var(--ck-text);
 	line-height: 1.7;
 	border-bottom: 1px solid var(--ck-border);
@@ -202,7 +219,6 @@
 	text-decoration: underline;
 }
 
-/* Cuerpo scrollable */
 .cookie-modal-body {
 	overflow-y: auto;
 	flex: 1;
@@ -210,7 +226,6 @@
 	scrollbar-color: rgba(255, 34, 68, .3) transparent;
 }
 
-/* Categoría */
 .ck-cat {
 	border-bottom: 1px solid var(--ck-border);
 }
@@ -248,7 +263,6 @@
 	flex: 1;
 }
 
-/* Toggle estilo datax — gris/oscuro */
 .ck-toggle {
 	position: relative;
 	display: inline-block;
@@ -284,7 +298,6 @@
 	transition: .25s;
 }
 
-/* Activo: fondo oscuro + check blanco */
 .ck-toggle input:checked+.ck-slider {
 	background: #2e3448;
 }
@@ -294,7 +307,6 @@
 	background: #fff;
 }
 
-/* Activo con check marca ✓ */
 .ck-toggle input:checked+.ck-slider::after {
 	content: '✓';
 	position: absolute;
@@ -304,7 +316,6 @@
 	font-weight: 700;
 }
 
-/* X cuando está desactivado */
 .ck-toggle input:not(:checked)+.ck-slider::after {
 	content: '×';
 	position: absolute;
@@ -318,7 +329,6 @@
 	opacity: .8;
 }
 
-/* Descripción de la categoría */
 .ck-cat-desc {
 	padding: .75rem 1.4rem;
 	font-size: .8rem;
@@ -333,7 +343,6 @@
 	display: block;
 }
 
-/* Tabla de cookies */
 .ck-table-wrap {
 	padding: 0 1.4rem .5rem;
 	overflow-x: auto;
@@ -387,25 +396,10 @@
 	white-space: nowrap;
 }
 
-/* Más información */
-.ck-more-info {
-	margin: 0 1.4rem 1rem;
-	border: 1px solid var(--ck-border);
-	border-radius: var(--ck-radius);
-	padding: .9rem 1rem;
-	display: none;
-}
-
-.ck-cat.open~.ck-more-info,
-.ck-more-info {
-	display: none;
-}
-
-/* Footer sticky */
 .cookie-modal-footer {
 	display: flex;
 	align-items: center;
-	gap: .75rem;
+	gap: .6rem;
 	flex-wrap: wrap;
 	padding: .85rem 1.4rem;
 	border-top: 1px solid var(--ck-border);
@@ -413,82 +407,80 @@
 	flex-shrink: 0;
 }
 
-.cookie-modal-footer .ck-btn-accept,
-.cookie-modal-footer .ck-btn-reject,
-.cookie-modal-footer .ck-btn-save {
+.ck-btn-accept,
+.ck-btn-reject,
+.ck-btn-save {
 	background: var(--ck-accent);
 	border: none;
 	border-radius: var(--ck-radius);
 	color: #fff;
 	cursor: pointer;
 	font-family: 'Space Mono', monospace;
-	font-size: .78rem;
+	font-size: .72rem;
 	font-weight: 700;
 	letter-spacing: .04em;
-	padding: .65rem 1.25rem;
+	padding: .65rem 1.1rem;
 	transition: filter .2s;
 	white-space: nowrap;
 }
 
-.cookie-modal-footer .ck-btn-accept:hover,
-.cookie-modal-footer .ck-btn-reject:hover,
-.cookie-modal-footer .ck-btn-save:hover {
+.ck-btn-accept:hover,
+.ck-btn-reject:hover,
+.ck-btn-save:hover {
 	filter: brightness(1.15);
 }
 
-.cookie-modal-footer .ck-btn-save {
+.ck-btn-save {
 	margin-left: auto;
 }
 
-/* Clase obsoleta — compatibilidad */
-.modal-desc {
-	display: none !important;
-}
-
+.modal-desc,
 .cookie-modal-actions {
 	display: none !important;
 }
 
-/* ── Animación ───────────────────────────────────────────────────────────── */
-@keyframes ckSlideUp {
+@keyframes ckFadeIn {
 	from {
 		opacity: 0;
-		transform: translateY(20px);
 	}
 
 	to {
 		opacity: 1;
-		transform: translateY(0);
 	}
 }
 
-/* ── Responsive ──────────────────────────────────────────────────────────── */
+@keyframes ckSlideUp {
+	from {
+		opacity: 0;
+		transform: translateY(24px) scale(.98);
+	}
+
+	to {
+		opacity: 1;
+		transform: translateY(0) scale(1);
+	}
+}
+
 @media (max-width: 500px) {
 	.cookie-box {
-		padding: 1.1rem 1rem;
+		padding: 1.4rem 1.1rem 1.25rem;
 	}
 
 	.cookie-actions {
-		flex-direction: column;
-	}
-
-	.btn-primary,
-	.btn-secondary {
-		flex: none;
-		width: 100%;
+		grid-template-columns: 1fr;
 	}
 
 	.cookie-modal-footer {
 		flex-direction: column;
 	}
 
-	.cookie-modal-footer .ck-btn-save {
+	.ck-btn-save {
 		margin-left: 0;
 		width: 100%;
 	}
 
-	.cookie-modal-footer .ck-btn-accept,
-	.cookie-modal-footer .ck-btn-reject {
+	.ck-btn-accept,
+	.ck-btn-reject {
 		flex: 1;
 	}
 }
