@@ -6,89 +6,44 @@
 /*   By: agarcia2 <agarcia2@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/27 09:13:44 by agarcia2          #+#    #+#             */
-/*   Updated: 2026/03/13 11:20:04 by agarcia2         ###   ########.fr       */
+/*   Updated: 2026/03/16 12:12:15 by agarcia2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-const WORKER_URL = "https://tfg-tracker.alexgaro2015-5ed.workers.dev";
+const WORKER = "https://tfg-tracker.alexgaro2015-5ed.workers.dev";
 
-function handleGoogleLogin(resp)
-{
-	try
-	{
-		const jwt = resp?.credential;
-		if (!jwt)
-		{
-			console.error("❌ No se recibió JWT de Google.");
-			alert("Error: no se pudo iniciar sesión con Google.");
-			return;
-		}
-		localStorage.setItem("google_jwt", jwt);
-		window.location.href = "/form/form.html";
+function handleGoogleLogin(resp) {
+	const jwt = resp?.credential;
+	if (!jwt) {
+		alert("Error: no se pudo iniciar sesión con Google.");
+		return;
 	}
-	catch (err)
-	{
-		console.error("Error en handleGoogleLogin:", err);
-		alert("⚠ Error procesando la respuesta de Google.");
-	}
+	localStorage.setItem("google_jwt", jwt);
+	location.href = "/form/form.html";
 }
 
-async function getClientIdFromWorker()
-{
-	try
-	{
-		const res = await fetch(WORKER_URL);
-		if (!res.ok)
-			throw new Error(`Error obteniendo client_id (${res.status})`);
-
-		const data = await res.json();
-		return data.client_id || null;
-	}
-	catch (err)
-	{
-		console.error("Cloudflare Worker error:", err);
-		return null;
-	}
+async function fetchClientId() {
+	const res = await fetch(WORKER);
+	const data = await res.json();
+	return data.client_id ?? null;
 }
 
-window.onload = async () =>
-{
+function renderButton(container, clientId) {
+	google.accounts.id.initialize({ client_id: clientId, callback: handleGoogleLogin });
+	google.accounts.id.renderButton(container, { theme: "filled_black", size: "large", shape: "rectangular" });
+	google.accounts.id.prompt();
+}
+
+async function initLogin() {
 	const container = document.getElementById("google-login");
-	if (!container)
-	{
-		console.error("❌ No existe el contenedor #google-login");
+	if (!container) return;
+
+	const clientId = await fetchClientId().catch(() => null);
+	if (!clientId) {
+		container.innerHTML = "<p style='color:red'>Error cargando Google Login</p>";
 		return;
 	}
-	const clientId = await getClientIdFromWorker();
-	if (!clientId)
-	{
-		console.error("❌ No se pudo cargar el client_id de Google.");
-		container.innerHTML =
-			"<p style='color:red'>Error cargando Google Login</p>";
-		return;
-	}
-	try
-	{
-		google.accounts.id.initialize({
-			client_id: clientId,
-			callback: handleGoogleLogin,
-			auto_select: false
-		});
+	renderButton(container, clientId);
+}
 
-		google.accounts.id.renderButton(container,
-			{
-				theme: "filled_black",
-				size: "large",
-				shape: "rectangular"
-			}
-		);
-
-		google.accounts.id.prompt();
-	}
-	catch (err)
-	{
-		console.error("Error inicializando Google Identity:", err);
-		container.innerHTML =
-			"<p style='color:red'>No se pudo cargar Google Login</p>";
-	}
-};
+window.onload = initLogin;

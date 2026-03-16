@@ -6,61 +6,47 @@
 /*   By: agarcia2 <agarcia2@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/13 11:29:03 by agarcia2          #+#    #+#             */
-/*   Updated: 2026/03/13 11:29:23 by agarcia2         ###   ########.fr       */
+/*   Updated: 2026/03/16 12:12:05 by agarcia2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   auth-guard.js                                      :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: agarcia2 <agarcia2@student.42barcelona.    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/03/13 00:00:00 by agarcia2          #+#    #+#             */
-/*   Updated: 2026/03/13 00:00:00 by agarcia2         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
+const JWT_KEY = "google_jwt";
+const LOGIN_URL = "/auth/login.html";
+const VALID_ISS = ["accounts.google.com", "https://accounts.google.com"];
 
-const AUTH_GUARD =
-{
-	LOGIN_URL:   "/login/index.html",
-	JWT_KEY:     "google_jwt",
-	MAX_AGE_MS:  3600 * 1000 
-};
-
-(function guard()
-{
-	const raw = localStorage.getItem(AUTH_GUARD.JWT_KEY);
-
-	if (!raw)
-		return redirect("no_jwt");
-	try
-	{
-		const payload = raw.split(".")[1];
-		const decoded = JSON.parse(atob(payload.replace(/-/g, "+").replace(/_/g, "/")));
-		const now = Math.floor(Date.now() / 1000);
-		if (decoded.exp && decoded.exp < now)
-		{
-			localStorage.removeItem(AUTH_GUARD.JWT_KEY);
-			return redirect("jwt_expired");
-		}
-		const validIssuers = ["accounts.google.com", "https://accounts.google.com"];
-		if (!validIssuers.includes(decoded.iss))
-		{
-			localStorage.removeItem(AUTH_GUARD.JWT_KEY);
-			return redirect("invalid_issuer");
-		}
+function decodeJwt(token) {
+	try {
+		const part = token.split(".")[1];
+		const decoded = atob(part.replace(/-/g, "+").replace(/_/g, "/"));
+		return JSON.parse(decoded);
+	} catch {
+		return null;
 	}
-	catch (_)
-	{
-		localStorage.removeItem(AUTH_GUARD.JWT_KEY);
-		return redirect("malformed_jwt");
-	}
-})();
-
-function redirect(reason)
-{
-	const dest = `${AUTH_GUARD.LOGIN_URL}?reason=${reason}&next=${encodeURIComponent(location.pathname)}`;
-	window.location.replace(dest);
 }
+
+function isValid(payload) {
+	const now = Math.floor(Date.now() / 1000);
+	return payload
+		&& VALID_ISS.includes(payload.iss)
+		&& (!payload.exp || payload.exp >= now);
+}
+
+function redirectToLogin(reason) {
+	const next = encodeURIComponent(location.pathname);
+	location.replace(`${LOGIN_URL}?reason=${reason}&next=${next}`);
+}
+
+function guard() {
+	const token = localStorage.getItem(JWT_KEY);
+	const payload = token ? decodeJwt(token) : null;
+
+	if (!payload) {
+		return redirectToLogin("no_jwt");
+	}
+	if (!isValid(payload)) {
+		localStorage.removeItem(JWT_KEY);
+		return redirectToLogin("invalid_jwt");
+	}
+}
+
+guard();
