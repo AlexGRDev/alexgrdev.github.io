@@ -6,7 +6,7 @@
 /*   By: agarcia2 <agarcia2@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/13 11:34:50 by agarcia2          #+#    #+#             */
-/*   Updated: 2026/03/16 11:10:27 by agarcia2         ###   ########.fr       */
+/*   Updated: 2026/03/16 11:19:49 by agarcia2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,7 +138,7 @@
 /* Title */
 .l-title {
 	font-family: Arial, sans-serif;
-	font-size: 48px;
+	font-size: 12px;
 	font-weight: 900;
 	line-height: .92;
 	letter-spacing: -.03em;
