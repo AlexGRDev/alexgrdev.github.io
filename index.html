@@ -15,6 +15,16 @@
 	<link rel="stylesheet" href="/assets/css/landing.css">
 	<script src="/assets/js/cookies.js" defer></script>
 	<script src="/assets/js/tracker.js" defer></script>
+	<!-- Google Analytics — carga condicional via cookies.js (RGPD) -->
+	<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag() { dataLayer.push(arguments); }
+		gtag('consent', 'default', {
+			analytics_storage: 'denied',
+			ad_storage: 'denied',
+			wait_for_update: 500
+		});
+	</script>
 </head>
 
 <body>
@@ -207,20 +217,25 @@
 							<span class="ty">"a3f2b1c9..."</span><span class="tc">,</span>
 						</div>
 						<div>&nbsp;&nbsp;<span class="tb">audio</span><span class="tc">:</span>
-							<span class="ty">124.04347</span><span class="tc">,</span></div>
+							<span class="ty">124.04347</span><span class="tc">,</span>
+						</div>
 						<div>&nbsp;&nbsp;<span class="tb">gpu</span><span class="tc">:</span>
 							<span class="ty">"Apple M3 GPU"</span><span class="tc">,</span>
 						</div>
 						<div>&nbsp;&nbsp;<span class="tb">ram</span><span class="tc">:</span>
-							<span class="tg">8</span><span class="tc">,</span></div>
+							<span class="tg">8</span><span class="tc">,</span>
+						</div>
 						<div>&nbsp;&nbsp;<span class="tb">cores</span><span class="tc">:</span>
-							<span class="tg">10</span><span class="tc">,</span></div>
+							<span class="tg">10</span><span class="tc">,</span>
+						</div>
 						<div>&nbsp;&nbsp;<span class="tb">fonts</span><span class="tc">:</span>
 							<span class="tw">[</span><span class="ty">"Arial"</span><span
 								class="tc">,</span><span class="ty">"+18"</span><span
-								class="tw">]</span><span class="tc">,</span></div>
+								class="tw">]</span><span class="tc">,</span>
+						</div>
 						<div>&nbsp;&nbsp;<span class="tb">scroll</span><span class="tc">:</span>
-							<span class="tg">73</span><span class="tc">,</span></div>
+							<span class="tg">73</span><span class="tc">,</span>
+						</div>
 						<div>&nbsp;&nbsp;<span class="tb">timeOnPage</span><span
 								class="tc">:</span><span class="tg">142</span></div>
 						<div><span class="tw">}</span></div>
