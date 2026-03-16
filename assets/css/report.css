@@ -6,7 +6,7 @@
 /*   By: agarcia2 <agarcia2@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/13 11:34:50 by agarcia2          #+#    #+#             */
-/*   Updated: 2026/03/14 12:42:04 by agarcia2         ###   ########.fr       */
+/*   Updated: 2026/03/16 13:06:03 by agarcia2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -693,4 +693,47 @@ body::after {
 		flex-direction: column;
 		text-align: center;
 	}
+}
+
+.rpt-progress-wrap {
+	max-width: 900px;
+	margin: 0 auto 2rem;
+	padding: 0 1.25rem;
+}
+
+.rpt-progress-bar {
+	height: 2px;
+	background: var(--line);
+	border-radius: 2px;
+	overflow: hidden;
+	margin-bottom: .75rem;
+}
+
+.rpt-progress-fill {
+	height: 100%;
+	background: var(--red);
+	border-radius: 2px;
+	width: 0%;
+	transition: width .6s cubic-bezier(.4, 0, .2, 1);
+}
+
+.rpt-progress-steps {
+	display: flex;
+	justify-content: space-between;
+	gap: .5rem;
+}
+
+.rpt-step {
+	font-size: .6rem;
+	letter-spacing: .1em;
+	color: var(--muted);
+	transition: color .3s;
+}
+
+.rpt-step.active {
+	color: var(--red);
+}
+
+.rpt-step.done {
+	color: var(--green);
 }

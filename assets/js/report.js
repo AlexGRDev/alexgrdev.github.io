@@ -6,7 +6,7 @@
 /*   By: agarcia2 <agarcia2@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/13 10:57:57 by agarcia2          #+#    #+#             */
-/*   Updated: 2026/03/16 12:13:13 by agarcia2         ###   ########.fr       */
+/*   Updated: 2026/03/16 13:05:54 by agarcia2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,9 @@ function bar(value, max, color) {
 }
 
 function row(label, value, hi) {
-	const cls = hi ? "rpt-row rpt-highlight" : "rpt-row";
 	const val = value != null ? value : "<span class='rpt-null'>–</span>";
-	return mk("div", cls, `<span class="rpt-label">${label}</span><span class="rpt-value">${val}</span>`);
+	return mk("div", hi ? "rpt-row rpt-highlight" : "rpt-row",
+		`<span class="rpt-label">${label}</span><span class="rpt-value">${val}</span>`);
 }
 
 function boolRow(label, value, yes, no, tyY, tyN) {
@@ -50,17 +50,48 @@ function section(title, icon) {
 	return s;
 }
 
+function setStep(n) {
+	document.querySelectorAll(".rpt-step").forEach((el, i) => {
+		el.classList.toggle("active", i + 1 === n);
+		el.classList.toggle("done", i + 1 < n);
+	});
+	const fill = document.getElementById("rpt-progress-fill");
+	if (fill) fill.style.width = `${Math.round((n / 3) * 100)}%`;
+}
+
+function setMsg(msg) {
+	const el = document.getElementById("rpt-status-msg");
+	if (el) el.textContent = msg;
+}
+
+async function fetchLog(googleId) {
+	const delays = [2000, 2000, 3000, 3000, 4000, 4000, 5000, 5000];
+	for (let i = 0; i < delays.length; i++) {
+		try {
+			const res = await fetch(`${ENDPOINT}?google_id=${encodeURIComponent(googleId)}`);
+			if (res.ok) {
+				const data = await res.json();
+				if (data && !data.error) return data;
+			}
+		} catch { }
+		setMsg(`Esperando respuesta del servidor… (${i + 2}/${delays.length})`);
+		await new Promise(r => setTimeout(r, delays[i]));
+	}
+	return null;
+}
+
 function buildHeader(log) {
 	const avi = log.google_picture
 		? `<img class="rpt-avatar" src="${log.google_picture}" alt="">`
 		: `<div class="rpt-avatar-ph">👤</div>`;
+	const net = log.network || {}, fp = log.fingerprint || {}, dv = log.device || {}, bat = fp.battery;
 	const profile = mk("div", "rpt-profile", `${avi}
 		<div>
 			<div class="rpt-eyebrow">Datos recopilados · TFG ITSALEXITO</div>
 			<div class="rpt-name">${log.google_name || "Usuario Anónimo"}</div>
 			<div class="rpt-email">${log.google_email || "Sin cuenta vinculada"}</div>
 		</div>`);
-	const net = log.network || {}, fp = log.fingerprint || {}, dv = log.device || {}, bat = fp.battery;
+
 	const chips = mk("div", "rpt-chips", `
 		${log.timestamp ? `<div class="rpt-chip">🕐 <span>${new Date(log.timestamp).toLocaleString("es-ES")}</span></div>` : ""}
 		${dv.os ? `<div class="rpt-chip">💻 <span>${dv.os}${dv.os_version ? " " + dv.os_version : ""}</span></div>` : ""}
@@ -74,12 +105,9 @@ function buildHeader(log) {
 
 function buildSections(log) {
 	const sections = [];
-	const net = log.network || {};
-	const fp = log.fingerprint || {};
-	const dv = log.device || {};
-	const bh = log.behavior || {};
-	const br = log.browser || {};
-	const sc = log.screen || {};
+	const net = log.network || {}, fp = log.fingerprint || {};
+	const dv = log.device || {}, bh = log.behavior || {};
+	const br = log.browser || {}, sc = log.screen || {};
 	const bat = fp.battery;
 
 	const sg = section("Identidad Google", "🔐");
@@ -91,14 +119,14 @@ function buildSections(log) {
 
 	if (dv.os) {
 		const so = section("Sistema operativo", "🖥️");
-		so.appendChild(row("OS detectado", `${badge(dv.os, "blue")}${dv.os_version ? ` <span style="font-size:11px;color:#8b949e">${dv.os_version}</span>` : ""}`, true));
+		so.appendChild(row("OS", `${badge(dv.os, "blue")}${dv.os_version ? ` <span style="font-size:11px;color:#8b949e">${dv.os_version}</span>` : ""}`, true));
 		so.appendChild(boolRow("Móvil", dv.mobile, "Sí", "No", "yellow", "blue"));
 		if (dv.cpuTiming) {
 			const ct = dv.cpuTiming;
 			so.appendChild(row("CPU Score", `${bar(ct.score, 100, ct.score > 60 ? "#3fb950" : ct.score > 30 ? "#d29922" : "#f85149")} <span style="font-size:11px;color:#8b949e">Score ${ct.score}/100 · ${ct.elapsed_ms}ms · ${ct.rating}</span>`));
 		}
-		so.appendChild(row("RAM aprox.", dv.deviceMemory ? `${bar(dv.deviceMemory, 32, "#58a6ff")} <span style="font-size:11px;color:#8b949e">${dv.deviceMemory} GB</span>` : null));
-		so.appendChild(row("Núcleos CPU", dv.hardwareConcurrency ? `${bar(dv.hardwareConcurrency, 16, "#3fb950")} <span style="font-size:11px;color:#8b949e">${dv.hardwareConcurrency} lógicos</span>` : null));
+		so.appendChild(row("RAM", dv.deviceMemory ? `${bar(dv.deviceMemory, 32, "#58a6ff")} <span style="font-size:11px;color:#8b949e">${dv.deviceMemory} GB</span>` : null));
+		so.appendChild(row("Cores", dv.hardwareConcurrency ? `${bar(dv.hardwareConcurrency, 16, "#3fb950")} <span style="font-size:11px;color:#8b949e">${dv.hardwareConcurrency} lógicos</span>` : null));
 		sections.push(so);
 	}
 
@@ -109,6 +137,7 @@ function buildSections(log) {
 		ss.appendChild(row("Color depth", `${sc.colorDepth} bits`));
 		const mq = fp.media || {};
 		if (mq.darkMode != null) ss.appendChild(boolRow("Modo oscuro", mq.darkMode, "Activo", "Inactivo", "blue", "gray"));
+		if (mq.colorGamut) ss.appendChild(row("Color gamut", badge(mq.colorGamut, mq.colorGamut === "p3" ? "green" : "gray")));
 		sections.push(ss);
 	}
 
@@ -118,7 +147,8 @@ function buildSections(log) {
 		sn.appendChild(row("Downlink", net.downlink ? `${net.downlink} Mbps` : null));
 		sn.appendChild(row("RTT", net.rtt ? `${net.rtt} ms` : null));
 		sn.appendChild(boolRow("Online", net.online, "Sí", "No", "green", "red"));
-		if (net.localIPs?.length) net.localIPs.forEach((ip, i) => sn.appendChild(row(i === 0 ? "IPs locales" : "", `<span class="rpt-hash">${ip}</span>`, i === 0)));
+		if (net.localIPs?.length)
+			net.localIPs.forEach((ip, i) => sn.appendChild(row(i === 0 ? "IPs locales (WebRTC)" : "", `<span class="rpt-hash">${ip}</span>`, i === 0)));
 		sections.push(sn);
 	}
 
@@ -129,6 +159,7 @@ function buildSections(log) {
 		sb.appendChild(row("Clicks", bh.clicks));
 		sb.appendChild(row("Teclas pulsadas", bh.keystrokes));
 		sb.appendChild(row("Distancia ratón", bh.totalMouseDist ? `${bh.totalMouseDist}px` : null));
+		sb.appendChild(row("Copy / Paste", bh.copyEvents != null ? `${bh.copyEvents} / ${bh.pasteEvents}` : null));
 		sections.push(sb);
 	}
 
@@ -137,32 +168,40 @@ function buildSections(log) {
 		sbr.appendChild(row("User-Agent", `<span style="font-size:10px;line-height:1.6">${br.userAgent}</span>`));
 		sbr.appendChild(row("Idiomas", (br.languages || []).join(", ") || br.language));
 		sbr.appendChild(boolRow("Do Not Track", br.doNotTrack === "1", "Activado", "Desactivado", "yellow", "gray"));
+		sbr.appendChild(boolRow("Cookies", br.cookieEnabled, "Habilitadas", "Deshabilitadas", "green", "red"));
 		sections.push(sbr);
 	}
 
 	if (fp.canvas) {
-		const sf = section("Fingerprint", "🔎");
-		const chunks = (fp.canvas.match(/.{1,8}/g) || []).map((c, i) => i % 2 === 0 ? `<span class="rpt-hash-hi">${c}</span>` : c);
+		const sf = section("Fingerprint del dispositivo", "🔎");
+		const chunks = (fp.canvas.match(/.{1,8}/g) || []).map((c, i) =>
+			i % 2 === 0 ? `<span class="rpt-hash-hi">${c}</span>` : c
+		);
 		sf.appendChild(row("Canvas hash", `<div class="rpt-hash">${chunks.join(" ")}</div>`, true));
-		if (fp.audio) sf.appendChild(row("Audio FP", `<span style="color:#3fb950">${parseFloat(fp.audio).toFixed(8)}</span>`));
+		if (fp.audio) sf.appendChild(row("Audio fingerprint", `<span style="color:#3fb950">${parseFloat(fp.audio).toFixed(8)}</span>`));
 		if (fp.webgl) {
 			sf.appendChild(row("GPU Vendor", fp.webgl.vendor));
 			sf.appendChild(row("GPU Renderer", `<span style="font-size:11px">${fp.webgl.renderer}</span>`));
+			sf.appendChild(row("WebGL2", fp.webgl.webgl2 ? badge("Soportado", "green") : badge("No", "gray")));
 		}
 		if (fp.tz) sf.appendChild(row("Timezone", fp.tz));
+		if (fp.locale) sf.appendChild(row("Locale", fp.locale));
 		if (fp.incognito) sf.appendChild(row("Incógnito", fp.incognito.likely ? badge("Probable", "red") : badge("No detectado", "green")));
 		sections.push(sf);
 	}
 
 	if (fp.permissions && Object.keys(fp.permissions).length) {
-		const sp = section("Permisos", "🔒");
+		const sp = section("Permisos del navegador", "🔒");
 		const grid = mk("div", "rpt-perm-grid");
 		for (const [name, state] of Object.entries(fp.permissions)) {
 			const cls = state === "granted" ? "rpt-perm-granted" : state === "denied" ? "rpt-perm-denied" : "rpt-perm-prompt";
 			const ico = state === "granted" ? "✓" : state === "denied" ? "✗" : "?";
-			grid.appendChild(mk("div", "rpt-perm-item", `<div class="rpt-perm-name">${name}</div><div class="rpt-perm-state ${cls}">${ico} ${state}</div>`));
+			grid.appendChild(mk("div", "rpt-perm-item",
+				`<div class="rpt-perm-name">${name}</div><div class="rpt-perm-state ${cls}">${ico} ${state}</div>`
+			));
 		}
-		sp.appendChild(grid); sections.push(sp);
+		sp.appendChild(grid);
+		sections.push(sp);
 	}
 
 	if (bat) {
@@ -173,52 +212,55 @@ function buildSections(log) {
 	}
 
 	if (fp.fonts?.length) {
-		const sfo = section(`Fuentes detectadas (${fp.fonts.length})`, "🔡");
+		const sfo = section(`Fuentes instaladas detectadas (${fp.fonts.length})`, "🔡");
 		const pills = mk("div", "rpt-font-pills");
 		fp.fonts.forEach(f => pills.appendChild(mk("div", "rpt-pill", f)));
-		sfo.appendChild(pills); sections.push(sfo);
+		sfo.appendChild(pills);
+		sections.push(sfo);
 	}
 
 	return sections;
 }
 
-async function fetchLog(googleId) {
-	for (let i = 0; i < 8; i++) {
-		try {
-			const res = await fetch(`${ENDPOINT}?google_id=${encodeURIComponent(googleId)}`);
-			if (res.ok) {
-				const data = await res.json();
-				if (data && !data.error) return data;
-			}
-		} catch { }
-		const el = document.querySelector(".rpt-loading");
-		if (el) el.innerHTML = `<div class="rpt-spinner"></div>Esperando datos… (intento ${i + 2}/8)`;
-		await new Promise(r => setTimeout(r, 3000 + i * 1000));
-	}
-	return null;
-}
-
 async function renderReport() {
 	const out = document.getElementById("data-output");
 	if (!out) return;
-	out.innerHTML = `<div class="rpt-loading"><div class="rpt-spinner"></div>Enviando datos del dispositivo…</div>`;
 
 	const jwt = localStorage.getItem("google_jwt");
 	const decoded = decodeJwt(jwt);
-	if (!decoded?.sub) { out.innerHTML = `<div class="rpt-loading">⚠ No se encontró sesión de Google.</div>`; return; }
+	if (!decoded?.sub) {
+		out.innerHTML = `<div class="rpt-loading">⚠ No se encontró sesión de Google. <a href="/auth/login.html" style="color:var(--red)">Volver al inicio</a></div>`;
+		return;
+	}
+
+	setStep(1);
+	setMsg("Recopilando datos del dispositivo…");
 
 	const stored = localStorage.getItem("cookies-prefs");
 	const prefs = stored ? JSON.parse(stored) : { analytics: false, fingerprint: false };
+
 	if (typeof sendTracker === "function") {
 		await sendTracker(prefs);
-		await new Promise(r => setTimeout(r, 6000));
 	}
 
-	out.innerHTML = `<div class="rpt-loading"><div class="rpt-spinner"></div>Consultando registros…</div>`;
+	setStep(2);
+	setMsg("Enviando datos al servidor…");
+	await new Promise(r => setTimeout(r, 2500));
+
+	setStep(3);
+	setMsg("Consultando registros…");
+
 	const log = await fetchLog(decoded.sub);
-	if (!log || log.error) { out.innerHTML = `<div class="rpt-loading">⚠ No se encontró ningún registro.</div>`; return; }
+
+	document.getElementById("rpt-progress")?.remove();
+
+	if (!log || log.error) {
+		out.innerHTML = `<div class="rpt-loading">⚠ No se encontró ningún registro. <a href="/auth/login.html" style="color:var(--red)">Reintentar</a></div>`;
+		return;
+	}
 
 	out.innerHTML = "";
+
 	const [profile, chips] = buildHeader(log);
 	out.appendChild(profile);
 	out.appendChild(chips);
