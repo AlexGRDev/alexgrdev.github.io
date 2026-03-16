@@ -6,48 +6,52 @@
 /*   By: agarcia2 <agarcia2@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/13 11:34:50 by agarcia2          #+#    #+#             */
-/*   Updated: 2026/03/13 13:29:31 by agarcia2         ###   ########.fr       */
+/*   Updated: 2026/03/16 11:26:18 by agarcia2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /* Usado en: index.html (cookie banner), login.html, callback.html */
 
-.btn-primary {
-	background: #ff3355;
-	padding: 0.9rem 1.7rem;
-	border-radius: 999px;
-	color: #fff;
-	font-weight: 600;
-	display: inline-block;
-	margin-top: 1.6rem;
-	text-decoration: none;
-	transition: 0.2s;
+/* ── Cookie banner — botones igualados ───────────────────────────────────── */
+.btn-primary,
+.btn-secondary {
+	font-family: 'Space Mono', monospace;
+	font-size: .78rem;
+	font-weight: 700;
+	letter-spacing: .06em;
+	text-transform: uppercase;
 	cursor: pointer;
 	border: none;
+	border-radius: 3px;
+	padding: .75rem 0;
+	width: 160px;
+	text-align: center;
+	transition: filter .2s, transform .15s;
+	display: inline-block;
+}
+
+.btn-primary {
+	background: #ff2244;
+	color: #fff;
 }
 
 .btn-primary:hover {
-	background: #ff4d6b;
-	transform: translateY(-2px);
+	filter: brightness(1.15);
+	transform: translateY(-1px);
 }
 
 .btn-secondary {
-	background: #1d2233;
-	border: 1px solid #333849;
-	padding: 0.7rem 1.1rem;
-	border-radius: 9px;
-	color: #fff;
-	cursor: pointer;
-	font-size: 0.9rem;
-	transition: 0.2s;
+	background: rgba(255, 34, 68, .12);
+	border: 1px solid rgba(255, 34, 68, .3);
+	color: #ff2244;
 }
 
 .btn-secondary:hover {
-	background: #272c3f;
-	transform: translateY(-2px);
+	background: rgba(255, 34, 68, .2);
+	transform: translateY(-1px);
 }
 
-/* callback.html — .btn .btn-login */
+/* ── callback.html — .btn .btn-login ─────────────────────────────────────── */
 
 .btn {
 	display: block;
@@ -72,7 +76,7 @@
 	transform: translateY(-2px);
 }
 
-/* landing — .l-btn-red .l-btn-ghost .l-nav-btn */
+/* ── landing — .l-btn-red .l-btn-ghost .l-nav-btn ───────────────────────── */
 
 .l-btn-red {
 	background: var(--red);
@@ -130,4 +134,6 @@
 	transition: .2s;
 }
 
-.l-nav-btn:hover { filter: brightness(1.15); }
+.l-nav-btn:hover {
+	filter: brightness(1.15);
+}
