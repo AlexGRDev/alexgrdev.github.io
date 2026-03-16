@@ -5,14 +5,12 @@
 	<meta charset="UTF-8">
 	<title>Tu perfil digital · TFG ITSALEXITO</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<script src="/assets/js/auth.js"></script>
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link rel="stylesheet" href="/assets/css/main.css">
 	<link rel="stylesheet" href="/assets/css/report.css">
 	<script src="/assets/js/tracker.js" defer></script>
 	<script src="/assets/js/report.js" defer></script>
-	<!-- Google Analytics — carga condicional via cookies.js (RGPD) -->
 	<script>
 		window.dataLayer = window.dataLayer || [];
 		function gtag() { dataLayer.push(arguments); }
@@ -26,13 +24,11 @@
 
 <body>
 
-	<!-- Fondos decorativos -->
 	<div class="rpt-bg"></div>
 	<div class="rpt-glow"></div>
 
 	<div class="card">
 
-		<!-- Hero -->
 		<div class="rpt-hero">
 			<div class="rpt-hero-eyebrow">
 				<span class="rpt-hero-eyebrow-dot"></span>
@@ -43,15 +39,25 @@
 			</h1>
 			<p class="rpt-hero-sub">
 				Esto es exactamente lo que una empresa puede saber sobre ti
-				al visitar su web — sin que instales nada ni aceptes cookies tradicionales.
+				al visitar su web — sin instalar nada ni aceptar cookies tradicionales.
 			</p>
 		</div>
 
-		<!-- Data output (report.js escribe aquí) -->
+		<div id="rpt-progress" class="rpt-progress-wrap">
+			<div class="rpt-progress-bar">
+				<div class="rpt-progress-fill" id="rpt-progress-fill"></div>
+			</div>
+			<div class="rpt-progress-steps">
+				<span class="rpt-step active" id="step-1">① Recopilando datos</span>
+				<span class="rpt-step" id="step-2">② Enviando al servidor</span>
+				<span class="rpt-step" id="step-3">③ Generando informe</span>
+			</div>
+		</div>
+
 		<div id="data-output">
 			<div class="rpt-loading">
 				<div class="rpt-spinner"></div>
-				Enviando datos del dispositivo…
+				<span id="rpt-status-msg">Recopilando datos del dispositivo…</span>
 			</div>
 		</div>
 
