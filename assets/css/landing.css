@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*    landing.css                                       :+:      :+:    :+:   */
+/*   landing.css                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: agarcia2 <agarcia2@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/13 11:34:50 by agarcia2          #+#    #+#             */
-/*   Updated: 2026/03/13 13:36:01 by agarcia2         ###   ########.fr       */
+/*   Updated: 2026/03/16 11:10:27 by agarcia2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,7 +138,7 @@
 /* Title */
 .l-title {
 	font-family: Arial, sans-serif;
-	font-size: 45px;
+	font-size: 48px;
 	font-weight: 900;
 	line-height: .92;
 	letter-spacing: -.03em;
@@ -847,4 +847,25 @@
 		flex-direction: column;
 		text-align: center;
 	}
+}
+
+/* ── Footer socials ──────────────────────────────────────────────────────── */
+.l-footer-socials {
+	display: flex;
+	align-items: center;
+	gap: 1.25rem;
+}
+
+.l-footer-socials a {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	color: var(--muted);
+	text-decoration: none;
+	transition: color .2s, transform .2s;
+}
+
+.l-footer-socials a:hover {
+	color: var(--red);
+	transform: translateY(-2px);
 }
