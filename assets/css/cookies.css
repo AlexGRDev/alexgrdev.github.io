@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   cookies.css                                        :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: agarcia2 <agarcia2@student.42barcelona.    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/03/16 11:22:39 by agarcia2          #+#    #+#             */
-/*   Updated: 2026/03/16 11:54:37 by agarcia2         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 :root {
 	--ck-accent: #ff2244;
 	--ck-bg: #0b0e15;
@@ -22,7 +10,6 @@
 	--ck-radius: 4px;
 }
 
-/* overlay + centrado */
 .cookie-banner {
 	position: fixed;
 	inset: 0;
@@ -101,7 +88,6 @@
 	color: var(--ck-text);
 }
 
-/* botones del banner — mismo tamaño, grid */
 .btn-primary,
 .btn-secondary {
 	font-family: 'Space Mono', monospace;
@@ -139,7 +125,6 @@
 	transform: translateY(-1px);
 }
 
-/* modal de preferencias */
 .cookie-modal {
 	position: fixed;
 	inset: 0;

@@ -1,20 +1,4 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   landing.css                                        :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: agarcia2 <agarcia2@student.42barcelona.    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/03/13 11:34:50 by agarcia2          #+#    #+#             */
-/*   Updated: 2026/03/16 12:13:29 by agarcia2         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
-/* Usado en: index.html */
-
 @import url('https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Syne:wght@400;700;800;900&display=swap');
-
-/* ── NAV ── */
 
 .l-nav {
 	position: fixed;
@@ -64,8 +48,6 @@
 	color: var(--text);
 }
 
-/* ── HERO ── */
-
 .l-hero {
 	min-height: 100vh;
 	display: flex;
@@ -110,7 +92,6 @@
 	max-width: 780px;
 }
 
-/* Pill badge */
 .l-pill {
 	display: inline-flex;
 	align-items: center;
@@ -135,7 +116,6 @@
 	animation: pulse 2s ease-in-out infinite;
 }
 
-/* Title */
 .l-title {
 	font-family: 'Syne', sans-serif;
 	font-size: clamp(2.4rem, 8vw, 4.5rem);
@@ -151,7 +131,6 @@
 	color: var(--red);
 }
 
-/* Subtitle */
 .l-sub {
 	font-size: .88rem;
 	line-height: 1.85;
@@ -166,7 +145,6 @@
 	font-weight: 400;
 }
 
-/* Buttons row */
 .l-btns {
 	display: flex;
 	gap: .8rem;
@@ -175,7 +153,6 @@
 	animation: fadeDown .7s .3s ease both;
 }
 
-/* Stats bar */
 .l-stats {
 	display: flex;
 	gap: 0;
@@ -216,8 +193,6 @@
 	text-transform: uppercase;
 	color: var(--muted);
 }
-
-/* ── SHARED SECTION ── */
 
 .l-wrap {
 	max-width: 1040px;
@@ -264,8 +239,6 @@
 	max-width: 480px;
 	line-height: 1.85;
 }
-
-/* ── DATA SECTION ── */
 
 .l-data-wrap {
 	text-align: center;
@@ -352,8 +325,6 @@
 	border-radius: 2px;
 }
 
-/* ── HOW IT WORKS ── */
-
 .l-how {
 	display: grid;
 	grid-template-columns: 1fr 1fr;
@@ -418,7 +389,6 @@
 	border-radius: 2px;
 }
 
-/* Terminal */
 .l-term {
 	background: #040609;
 	border: 1px solid var(--line);
@@ -457,7 +427,6 @@
 	line-height: 2.1;
 }
 
-/* Terminal syntax colors */
 .tc {
 	color: #2e3448;
 }
@@ -485,8 +454,6 @@
 .tp {
 	color: #b392f0;
 }
-
-/* ── AUTHOR ── */
 
 .l-author {
 	display: grid;
@@ -578,7 +545,6 @@
 	margin-bottom: .7rem;
 }
 
-/* Phases */
 .l-phases {
 	display: flex;
 	flex-direction: column;
@@ -632,8 +598,6 @@
 .l-phase.active .l-phase-st {
 	color: var(--red);
 }
-
-/* ── FAQ ── */
 
 .l-faq {
 	display: flex;
@@ -698,8 +662,6 @@
 	padding-bottom: 1.1rem;
 }
 
-/* ── CTA ── */
-
 .l-cta {
 	text-align: center;
 	padding: 7rem 2rem;
@@ -737,8 +699,6 @@
 	z-index: 1;
 }
 
-/* ── FOOTER ── */
-
 .l-footer {
 	padding: 1.8rem 2.5rem;
 	display: flex;
@@ -765,8 +725,6 @@
 	color: var(--muted);
 	letter-spacing: .05em;
 }
-
-/* ── ANIMACIONES ── */
 
 @keyframes fadeDown {
 	from {
@@ -804,8 +762,6 @@
 	opacity: 1;
 	transform: none;
 }
-
-/* ── RESPONSIVE ── */
 
 @media (max-width: 768px) {
 	.l-nav {
@@ -849,7 +805,6 @@
 	}
 }
 
-/* ── Footer socials ──────────────────────────────────────────────────────── */
 .l-footer-socials {
 	display: flex;
 	align-items: center;

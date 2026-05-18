@@ -1,18 +1,5 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*    report.css                                        :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: agarcia2 <agarcia2@student.42barcelona.    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/03/13 11:34:50 by agarcia2          #+#    #+#             */
-/*   Updated: 2026/03/16 13:06:03 by agarcia2         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 @import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@700;800;900&display=swap');
 
-/* ── Variables ───────────────────────────────────────────────────────────── */
 :root {
 	--red: #ff2244;
 	--red-dim: rgba(255, 34, 68, .12);
@@ -32,7 +19,6 @@
 	--purple: #b392f0;
 }
 
-/* ── Base ────────────────────────────────────────────────────────────────── */
 *,
 *::before,
 *::after {
@@ -51,7 +37,6 @@ body {
 	overflow-x: hidden;
 }
 
-/* Grain overlay */
 body::after {
 	content: '';
 	position: fixed;
@@ -62,7 +47,6 @@ body::after {
 	background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
-/* ── Grid background ─────────────────────────────────────────────────────── */
 .rpt-bg {
 	position: fixed;
 	inset: 0;
@@ -75,7 +59,6 @@ body::after {
 	mask-image: radial-gradient(ellipse 80% 60% at 50% 20%, black 10%, transparent 70%);
 }
 
-/* Glow top */
 .rpt-glow {
 	position: fixed;
 	z-index: 0;
@@ -89,7 +72,6 @@ body::after {
 	transform: translateX(-50%);
 }
 
-/* ── Layout ──────────────────────────────────────────────────────────────── */
 .card {
 	position: relative;
 	z-index: 1;
@@ -98,7 +80,6 @@ body::after {
 	padding: 0 1.25rem 4rem;
 }
 
-/* ── Hero header ─────────────────────────────────────────────────────────── */
 .rpt-hero {
 	text-align: center;
 	padding: 4rem 1rem 3rem;
@@ -153,7 +134,6 @@ body::after {
 	animation: rptFadeDown .6s .2s ease both;
 }
 
-/* ── Profile card ────────────────────────────────────────────────────────── */
 .rpt-profile {
 	display: inline-flex;
 	align-items: center;
@@ -230,7 +210,6 @@ body::after {
 	margin-top: 2px;
 }
 
-/* ── Chips ───────────────────────────────────────────────────────────────── */
 .rpt-chips {
 	display: flex;
 	gap: .5rem;
@@ -261,7 +240,6 @@ body::after {
 	color: var(--text);
 }
 
-/* ── Data output shell ───────────────────────────────────────────────────── */
 #data-output {
 	display: block;
 	font-family: 'Space Mono', monospace;
@@ -272,7 +250,6 @@ body::after {
 	text-align: left;
 }
 
-/* ── Body ────────────────────────────────────────────────────────────────── */
 .rpt-header {
 	background: var(--bg2);
 	border: 1px solid var(--line);
@@ -308,7 +285,6 @@ body::after {
 	gap: .4rem;
 }
 
-/* ── Sections ────────────────────────────────────────────────────────────── */
 .rpt-section {
 	background: var(--bg2);
 	border: 1px solid var(--line);
@@ -393,7 +369,6 @@ body::after {
 	background: var(--red);
 }
 
-/* ── Rows ────────────────────────────────────────────────────────────────── */
 .rpt-row {
 	display: flex;
 	align-items: baseline;
@@ -455,7 +430,6 @@ body::after {
 	font-style: italic;
 }
 
-/* ── Badges ──────────────────────────────────────────────────────────────── */
 .rpt-badge {
 	display: inline-block;
 	padding: 2px 8px;
@@ -496,7 +470,6 @@ body::after {
 	border: 1px solid var(--line);
 }
 
-/* ── Progress bar ────────────────────────────────────────────────────────── */
 .rpt-progress {
 	display: flex;
 	align-items: center;
@@ -517,7 +490,6 @@ body::after {
 	white-space: nowrap;
 }
 
-/* ── Fonts pills ─────────────────────────────────────────────────────────── */
 .rpt-font-pills {
 	display: flex;
 	flex-wrap: wrap;
@@ -541,7 +513,6 @@ body::after {
 	color: var(--white);
 }
 
-/* ── Permissions grid ────────────────────────────────────────────────────── */
 .rpt-perm-grid {
 	display: grid;
 	grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
@@ -585,7 +556,6 @@ body::after {
 	color: var(--yellow);
 }
 
-/* ── Hash ────────────────────────────────────────────────────────────────── */
 .rpt-hash {
 	font-size: 10px;
 	color: var(--soft);
@@ -598,7 +568,6 @@ body::after {
 	color: var(--blue);
 }
 
-/* ── Loading ─────────────────────────────────────────────────────────────── */
 .rpt-loading {
 	display: flex;
 	align-items: center;
@@ -622,7 +591,6 @@ body::after {
 	animation: rptSpin .8s linear infinite;
 }
 
-/* ── Animations ──────────────────────────────────────────────────────────── */
 @keyframes rptFade {
 	from {
 		opacity: 0;
@@ -667,7 +635,6 @@ body::after {
 	}
 }
 
-/* ── Responsive ──────────────────────────────────────────────────────────── */
 @media (max-width: 640px) {
 	.rpt-hero-title {
 		font-size: 1.8rem;

@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   cookies.js                                         :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: agarcia2 <agarcia2@student.42barcelona.    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/27 09:15:20 by agarcia2          #+#    #+#             */
-/*   Updated: 2026/03/16 12:12:37 by agarcia2         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 const STORAGE = { accepted: "cookies-accepted", prefs: "cookies-prefs" };
 const GA_ID = "G-BBF4E4F72G";
 const $ = id => document.getElementById(id);

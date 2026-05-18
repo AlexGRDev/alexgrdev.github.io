@@ -1,20 +1,4 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   auth.css                                           :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: agarcia2 <agarcia2@student.42barcelona.    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/03/13 11:34:50 by agarcia2          #+#    #+#             */
-/*   Updated: 2026/03/13 13:29:45 by agarcia2         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
-/* Usado en: auth/login.html, auth/callback.html */
-
 @import url('https://fonts.googleapis.com/css2?family=Syne:wght@700;800;900&display=swap');
-
-/* ── LOGIN (login.html) — hero centrado ── */
 
 .hero {
 	min-height: 100vh;
@@ -69,8 +53,6 @@
 
 #google-login > div { margin-top: 0 !important; }
 
-/* ── CALLBACK (callback.html) — tarjeta centrada ── */
-
 .access-body {
 	display: flex;
 	align-items: center;
@@ -118,8 +100,6 @@
 	height: 1px;
 	background: #333;
 }
-
-/* ── ANIMACIÓN ── */
 
 @keyframes authFadeIn {
 	from { opacity: 0; transform: translateY(16px); }

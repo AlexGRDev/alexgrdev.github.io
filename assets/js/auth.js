@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   auth.js                                            :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: agarcia2 <agarcia2@student.42barcelona.    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/03/13 11:29:03 by agarcia2          #+#    #+#             */
-/*   Updated: 2026/03/16 12:12:05 by agarcia2         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 const JWT_KEY = "google_jwt";
 const LOGIN_URL = "/auth/login.html";
 const VALID_ISS = ["accounts.google.com", "https://accounts.google.com"];

@@ -1,18 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   buttons.css                                        :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: agarcia2 <agarcia2@student.42barcelona.    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/03/13 11:34:50 by agarcia2          #+#    #+#             */
-/*   Updated: 2026/03/16 11:26:18 by agarcia2         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
-/* Usado en: index.html (cookie banner), login.html, callback.html */
-
-/* ── Cookie banner — botones igualados ───────────────────────────────────── */
 .btn-primary,
 .btn-secondary {
 	font-family: 'Space Mono', monospace;
@@ -51,8 +36,6 @@
 	transform: translateY(-1px);
 }
 
-/* ── callback.html — .btn .btn-login ─────────────────────────────────────── */
-
 .btn {
 	display: block;
 	width: 100%;
@@ -75,8 +58,6 @@
 	background: #ff1a28;
 	transform: translateY(-2px);
 }
-
-/* ── landing — .l-btn-red .l-btn-ghost .l-nav-btn ───────────────────────── */
 
 .l-btn-red {
 	background: var(--red);
